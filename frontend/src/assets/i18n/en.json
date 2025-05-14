@@ -92,6 +92,7 @@
     },
     "BOOK_NOW": "Book Now",
     "BOOKED": "Booked",
+    "CANCEL_BOOKING": "Unbook",
     "LOGIN_TO_BOOK": "Login to Book",
     "AVAILABLE_TICKETS": "Available Tickets",
     "NO_EVENTS_FOUND": "No events found",
@@ -113,7 +114,9 @@
     "STATUS": "Status",
     "PAID": "Paid",
     "NO_BOOKINGS": "You have no bookings yet.",
-    "NO_BOOKINGS_MESSAGE": "You can book events from the events page."
+    "NO_BOOKINGS_MESSAGE": "You can book events from the events page.",
+    "CANCEL_SUCCESS_MESSAGE": "Your booking has been canceled successfully.",
+    "CANCEL_ERROR_MESSAGE": "Failed to cancel your booking. Please try again."
   },
   "PROFILE": {
     "PROFILE": "Profile",
@@ -124,7 +127,7 @@
     "DARK_MODE": "Dark Mode",
     "UPDATE_SUCCESS": "Profile updated successfully",
     "UPDATE_ERROR": "Error updating profile",
-     "MANAGE_YOUR_ACCOUNT": "Manage your account settings",
+    "MANAGE_YOUR_ACCOUNT": "Manage your account settings",
     "PROFILE_INFO": "Profile Information",
     "CURRENT_PASSWORD": "Current Password",
     "CURRENT_PASSWORD_REQUIRED": "Current password is required",

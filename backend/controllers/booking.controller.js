@@ -11,6 +11,11 @@ export const createBooking = catchAsync(async (req, res, next) => {
     return next(new AppError('No event found with that ID', 404));
   }
 
+  // Check if event has available tickets
+  if (event.availableTickets <= 0) {
+    return next(new AppError('No available tickets for this event', 400));
+  }
+
   // Check if user already booked this event
   const existingBooking = await Booking.findOne({
     user: req.user.id,
@@ -21,11 +26,16 @@ export const createBooking = catchAsync(async (req, res, next) => {
     return next(new AppError('You have already booked this event', 400));
   }
 
+  // Create booking
   const booking = await Booking.create({
     event: eventId,
     user: req.user.id,
     price: event.price
   });
+
+  // Decrease available tickets
+  event.availableTickets -= 1;
+  await event.save();
 
   res.status(201).json({
     status: 'success',
@@ -34,6 +44,7 @@ export const createBooking = catchAsync(async (req, res, next) => {
     }
   });
 });
+
 
 export const getUserBookings = catchAsync(async (req, res, next) => {
   const bookings = await Booking.find({ user: req.user.id }).populate('event');
@@ -60,11 +71,20 @@ export const getAllBookings = catchAsync(async (req, res, next) => {
 });
 
 export const deleteBooking = catchAsync(async (req, res, next) => {
-  const booking = await Booking.findByIdAndDelete(req.params.id);
+  const booking = await Booking.findById(req.params.id);
 
   if (!booking) {
     return next(new AppError('No booking found with that ID', 404));
   }
+
+  // Increase available tickets before deleting booking
+  const event = await Event.findById(booking.event);
+  if (event) {
+    event.availableTickets += 1;
+    await event.save();
+  }
+
+  await Booking.findByIdAndDelete(req.params.id);
 
   res.status(204).json({
     status: 'success',

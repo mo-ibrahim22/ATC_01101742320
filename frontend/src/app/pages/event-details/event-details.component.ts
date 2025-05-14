@@ -18,6 +18,7 @@ export class EventDetailsComponent implements OnInit {
   event: Event | null = null;
   isLoading = true;
   isBooked = false;
+  bookingId: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,7 @@ export class EventDetailsComponent implements OnInit {
       next: (response) => {
         this.event = response.event;
         this.isBooked = response.isBooked;
+        this.bookingId = response.bookingId;
         this.isLoading = false;
       },
       error: () => {
@@ -72,6 +74,34 @@ export class EventDetailsComponent implements OnInit {
       },
     });
   }
+
+ cancelBooking(): void {
+  if (!this.bookingId) {
+    this.toastr.error(
+      this.translate.instant('BOOKING.CANCEL_ERROR_MESSAGE'),
+      this.translate.instant('ERRORS.ERROR')
+    );
+    return;
+  }
+
+  this.bookingService.deleteBooking(this.bookingId).subscribe({
+    next: () => {
+      this.toastr.success(
+        this.translate.instant('BOOKING.CANCEL_SUCCESS_MESSAGE'),
+        this.translate.instant('COMMON.SUCCESS')
+      );
+      this.isBooked = false;
+      this.bookingId = '';
+    },
+    error: () => {
+      this.toastr.error(
+        this.translate.instant('BOOKING.CANCEL_ERROR_MESSAGE'),
+        this.translate.instant('ERRORS.ERROR')
+      );
+    }
+  });
+}
+
   goBackToEvents(): void {
     this.router.navigate(['/']);
   }

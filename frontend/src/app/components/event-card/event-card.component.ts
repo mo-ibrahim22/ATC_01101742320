@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-event-card',
-  imports: [CommonModule, DateFormatPipe, TruncatePipe,RouterModule],
+  imports: [CommonModule, DateFormatPipe, TruncatePipe, RouterModule],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
 })
@@ -51,5 +51,30 @@ export class EventCardComponent {
     });
   }
 
-  
+  cancelBooking(bookingId: string): void {
+    if (!bookingId) {
+      this.toastr.error(
+        this.translate.instant('BOOKING.CANCEL_ERROR_MESSAGE'),
+        this.translate.instant('ERRORS.ERROR')
+      );
+      return;
+    }
+
+    this.bookingService.deleteBooking(bookingId).subscribe({
+      next: () => {
+        this.toastr.success(
+          this.translate.instant('BOOKING.CANCEL_SUCCESS_MESSAGE'),
+          this.translate.instant('COMMON.SUCCESS')
+        );
+        this.event.isBooked = false;
+        this.event.bookingId = "";
+      },
+      error: () => {
+        this.toastr.error(
+          this.translate.instant('BOOKING.CANCEL_ERROR_MESSAGE'),
+          this.translate.instant('ERRORS.ERROR')
+        );
+      },
+    });
+  }
 }

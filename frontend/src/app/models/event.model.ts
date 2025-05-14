@@ -1,5 +1,3 @@
-import { Booking } from './booking.model';
-
 export interface Event {
   _id: string;
   name: string;
@@ -14,4 +12,5 @@ export interface Event {
   availableTickets: number;
   createdAt: Date;
   isBooked: boolean;
+  bookingId: string;
 }

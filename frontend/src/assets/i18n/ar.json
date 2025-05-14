@@ -1,7 +1,6 @@
 {
-  
   "COMMON": {
-    "APP_NAME":"أريڤنتس",
+    "APP_NAME": "أريڤنتس",
     "SUCCESS": "نجاح",
     "ERROR": "خطأ",
     "VIEW_DETAILS": "عرض التفاصيل",
@@ -93,6 +92,7 @@
     },
     "BOOK_NOW": "احجز الآن",
     "BOOKED": "تم الحجز",
+    "CANCEL_BOOKING": "إلغاء الحجز",
     "LOGIN_TO_BOOK": "سجل الدخول للحجز",
     "AVAILABLE_TICKETS": "التذاكر المتاحة",
     "NO_EVENTS_FOUND": "لم يتم العثور على فعاليات",
@@ -114,7 +114,9 @@
     "STATUS": "الحالة",
     "PAID": "مدفوع",
     "NO_BOOKINGS": "لا توجد حجوزات",
-    "NO_BOOKINGS_MESSAGE": "لم تقم بحجز أي فعاليات بعد."
+    "NO_BOOKINGS_MESSAGE": "لم تقم بحجز أي فعاليات بعد.",
+    "CANCEL_SUCCESS_MESSAGE": "تم إلغاء الحجز بنجاح",
+    "CANCEL_ERROR_MESSAGE": "خطأ في إلغاء الحجز"
   },
   "PROFILE": {
     "PROFILE": "الملف الشخصي",

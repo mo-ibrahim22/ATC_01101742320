@@ -32,7 +32,7 @@
     <!-- Empty State -->
     <app-empty-state *ngIf="!isLoading && events.length === 0" [title]="translate.instant('EVENTS.NO_EVENTS_FOUND')"
       [message]="translate.instant('EVENTS.TRY_CHANGING_FILTERS')" />
-      
+
 
     <!-- Pagination -->
     <div *ngIf="!isLoading && events.length > 0" class="mt-8 flex justify-center">
@@ -45,7 +45,7 @@
         <button *ngFor="let page of getPages()" (click)="onPageChange(page)"
           [class.bg-primary-500]="page === currentPage" [class.text-white]="page === currentPage"
           [class.border-primary-500]="page === currentPage" [class.dark:bg-primary-600]="page === currentPage"
-          class="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-700  bg-white dark:bg-gray-800 text-primary-900 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+          class="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-primary-600 dark:hover:bg-gray-700">
           {{ page }}
         </button>
 

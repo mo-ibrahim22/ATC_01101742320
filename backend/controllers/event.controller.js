@@ -26,9 +26,18 @@ export const getAllEvents = catchAsync(async (req, res, next) => {
       const isBooked = bookings.some(
         booking => booking.event._id.toString() === event._id.toString() // Adjusted comparison
       );
+      let bookingId = null;
+      if (isBooked) {
+        const booking = bookings.find(
+          booking => booking.event._id.toString() === event._id.toString()
+        );
+        bookingId = booking ? booking._id : null;
+      }
+      // Check if the booking ID exists for the event
       return {
         ...event.toObject(),
-        isBooked
+        isBooked,
+        bookingId
       };
     });
 
@@ -41,7 +50,7 @@ export const getAllEvents = catchAsync(async (req, res, next) => {
     });
   }
 
-  // If the user is not logged in, return the events without the `isBooked` field
+  // If the user is not logged in, return the events without the isBooked field
   res.status(200).json({
     status: 'success',
     results: events.length,
@@ -60,25 +69,31 @@ export const getEvent = catchAsync(async (req, res, next) => {
     return next(new AppError('No event found with that ID', 404));
   }
 
-  // Check if user has booked this event
   let isBooked = false;
+  let bookingId = null;
 
   if (req.user && req.user.id) {
     const booking = await Booking.findOne({
       user: req.user.id,
       event: req.params.id
     });
-    isBooked = !!booking;
+
+    if (booking) {
+      isBooked = true;
+      bookingId = booking._id;
+    }
   }
 
   res.status(200).json({
     status: 'success',
     data: {
       event,
-      isBooked
+      isBooked,
+      bookingId
     }
   });
 });
+
 
 
 export const createEvent = catchAsync(async (req, res, next) => {

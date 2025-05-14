@@ -36,11 +36,14 @@ export class EventService {
   /**
    * Get a single event with its booking status.
    */
-  getEvent(id: string): Observable<{ event: Event; isBooked: boolean }> {
+  getEvent(id: string): Observable<{
+    bookingId: string; event: Event; isBooked: boolean 
+}> {
     return this.http.get<any>(`${this.apiUrl}/events/${id}`).pipe(
       map((response) => ({
         event: response.data.event,
         isBooked: response.data.isBooked,
+        bookingId: response.data.bookingId,
       }))
     );
   }
