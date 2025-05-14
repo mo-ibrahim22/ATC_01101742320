@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventCardComponent } from '../../components/event-card/event-card.component';
 import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
-import { EmptyStateComponent } from "../../components/empty-state/empty-state.component";
+import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-events',
@@ -16,8 +16,8 @@ import { EmptyStateComponent } from "../../components/empty-state/empty-state.co
     FormsModule,
     EventCardComponent,
     LoadingSpinnerComponent,
-    EmptyStateComponent
-],
+    EmptyStateComponent,
+  ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
 })
@@ -26,7 +26,7 @@ export class EventsComponent implements OnInit {
   isLoading = true;
   currentPage = 1;
   totalEvents = 0;
-  itemsPerPage = 9;
+  itemsPerPage = 8;
   categories: string[] = [];
   selectedCategory = '';
   searchQuery = '';
@@ -81,10 +81,5 @@ export class EventsComponent implements OnInit {
   onSearch(): void {
     this.currentPage = 1;
     this.loadEvents();
-  }
-
-  getPages(): number[] {
-    const totalPages = Math.ceil(this.totalEvents / this.itemsPerPage);
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 }
