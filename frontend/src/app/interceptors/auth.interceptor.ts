@@ -1,5 +1,4 @@
 import { HttpRequest, HttpHandlerFn } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   let authToken: string | null = null;

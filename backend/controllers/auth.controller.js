@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import AppError from '../utils/appError.js';
 import catchAsync from '../utils/catchAsync.js';
@@ -42,58 +41,33 @@ export const logout = (req, res) => {
   res.status(200).json({ status: 'success' });
 };
 
-export const protect = catchAsync(async (req, res, next) => {
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1];
-  } else if (req.cookies.jwt) {
-    token = req.cookies.jwt;
-  }
 
-  if (!token) {
-    return next(
-      new AppError('You are not logged in! Please log in to get access.', 401)
-    );
-  }
-
-  const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-
-  const currentUser = await User.findById(decoded.id);
-  if (!currentUser) {
-    return next(
-      new AppError('The user belonging to this token no longer exists.', 401)
-    );
-  }
-
-  req.user = currentUser;
-  res.locals.user = currentUser;
-  next();
-});
-
-export const restrictTo = (...roles) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return next(
-        new AppError('You do not have permission to perform this action', 403)
-      );
-    }
-    next();
-  };
-};
 
 export const updatePassword = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select('+password');
+  const { currentPassword, newPassword, passwordConfirm } = req.body;
 
-  if (!(await user.correctPassword(req.body.currentPassword, user.password))) {
+  if (!currentPassword || !newPassword || !passwordConfirm) {
+    return next(new AppError('Please provide all required fields.', 400));
+  }
+
+  const user = await User.findById(req.user.id).select('+password');
+  if (!user) {
+    return next(new AppError('User not found.', 404));
+  }
+
+
+  const isCorrect = await user.correctPassword(currentPassword, user.password);
+  if (!isCorrect) {
     return next(new AppError('Your current password is wrong.', 401));
   }
 
-  user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+
+  user.password = newPassword;
+  user.passwordConfirm = passwordConfirm;
+
   await user.save();
 
   createSendToken(user, 200, res);
 });
+
+

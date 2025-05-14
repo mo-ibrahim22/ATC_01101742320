@@ -19,9 +19,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(withFetch()),
+    // Combine into a single provideHttpClient call
     provideHttpClient(
-      withInterceptors([authInterceptor]),
+      withFetch(),
+      withInterceptors([authInterceptor, errorInterceptor]),
     ),
     importProvidersFrom([
       TranslateModule.forRoot({

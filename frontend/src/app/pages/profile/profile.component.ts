@@ -123,7 +123,7 @@ export class ProfileComponent implements OnInit {
 
     const { currentPassword, newPassword, confirmPassword } = this.passwordForm.value;
 
-    this.authService.updatePassword(currentPassword!, newPassword!, confirmPassword!).subscribe({
+    this.userService.updatePassword(currentPassword!, newPassword!, confirmPassword!).subscribe({
       next: () => {
         this.isChangingPassword = false;
         this.passwordForm.reset();

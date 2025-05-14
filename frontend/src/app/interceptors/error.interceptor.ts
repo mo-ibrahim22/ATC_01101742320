@@ -1,12 +1,23 @@
-import { HttpRequest, HttpHandlerFn, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandlerFn,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, throwError } from 'rxjs';
 
-export function errorInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
-  // Inject services using the inject() function
+export function errorInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) {
+  // Skip injecting TranslateService for translation requests
+  if (req.url.includes('./assets/i18n/')) {
+    return next(req);
+  }
+
   const router = inject(Router);
   const toastr = inject(ToastrService);
   const translate = inject(TranslateService);

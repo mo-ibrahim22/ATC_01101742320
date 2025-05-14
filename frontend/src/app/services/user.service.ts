@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private apiUrl = environment.apiUrl;
@@ -16,27 +16,27 @@ export class UserService {
    * Admin: Get all users.
    */
   getAllUsers(): Observable<User[]> {
-    return this.http.get<any>(`${this.apiUrl}/users`).pipe(
-      map((res) => res.data.users)
-    );
+    return this.http
+      .get<any>(`${this.apiUrl}/users`)
+      .pipe(map((res) => res.data.users));
   }
 
   /**
    * Admin: Get single user by ID.
    */
   getUser(id: string): Observable<User> {
-    return this.http.get<any>(`${this.apiUrl}/users/${id}`).pipe(
-      map((res) => res.data.user)
-    );
+    return this.http
+      .get<any>(`${this.apiUrl}/users/${id}`)
+      .pipe(map((res) => res.data.user));
   }
 
   /**
    * Admin: Update a user's data.
    */
   updateUser(id: string, userData: Partial<User>): Observable<User> {
-    return this.http.patch<any>(`${this.apiUrl}/users/${id}`, userData).pipe(
-      map((res) => res.data.user)
-    );
+    return this.http
+      .patch<any>(`${this.apiUrl}/users/${id}`, userData)
+      .pipe(map((res) => res.data.user));
   }
 
   /**
@@ -50,9 +50,9 @@ export class UserService {
    * User: Update their own profile info.
    */
   updateMe(userData: FormData): Observable<User> {
-    return this.http.patch<any>(`${this.apiUrl}/users/updateMe`, userData).pipe(
-      map((res) => res.data.user)
-    );
+    return this.http
+      .patch<any>(`${this.apiUrl}/users/updateMe`, userData)
+      .pipe(map((res) => res.data.user));
   }
 
   /**
@@ -70,13 +70,13 @@ export class UserService {
     newPassword: string,
     passwordConfirm: string
   ): Observable<User> {
-    return this.http.patch<any>(`${this.apiUrl}/users/updateMyPassword`, {
-      currentPassword,
-      newPassword,
-      passwordConfirm
-    }).pipe(
-      map((res) => res.data.user)
-    );
+    return this.http
+      .patch<any>(`${this.apiUrl}/auth/updateMyPassword`, {
+        currentPassword,
+        newPassword,
+        passwordConfirm,
+      })
+      .pipe(map((res) => res.data.user));
   }
 
   /**
@@ -87,7 +87,7 @@ export class UserService {
     formData.append('photo', photo);
     return this.http.patch<any>(`${this.apiUrl}/users/me/photo`, formData).pipe(
       map((res) => ({
-        photoUrl: res.data.photo
+        photoUrl: res.data.photo,
       }))
     );
   }

@@ -130,34 +130,7 @@ export class AuthService {
     this.currentUserSubject.next(user);
   }
 
-  /**
-   * Update password with error handling
-   */
-  updatePassword(
-    currentPassword: string,
-    newPassword: string,
-    passwordConfirm: string
-  ): Observable<User> {
-    return this.userService
-      .updatePassword(currentPassword, newPassword, passwordConfirm)
-      .pipe(
-        tap((user) => {
-          this.updateUser(user);
-          this.toastr.success(
-            this.translate.instant('PROFILE.PASSWORD_UPDATED'),
-            this.translate.instant('COMMON.SUCCESS')
-          );
-        }),
-        catchError((error: any) => {
-          this.toastr.error(
-            this.translate.instant('PROFILE.PASSWORD_UPDATE_ERROR'),
-            this.translate.instant('ERRORS.ERROR')
-          );
-          return throwError(() => error);
-        })
-      );
-  }
-
+ 
   /**
    * Shared logic to handle successful login/signup
    */

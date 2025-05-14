@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';  // Add this import for crypto
 
 const userSchema = new mongoose.Schema(
   {
@@ -39,11 +40,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please confirm your password'],
       validate: {
+        // Keep this validator for registration
         validator: function(el) {
           return el === this.password;
         },
-        message: 'Passwords are not the same!'
-      }
+        message: 'Passwords are not the same!',
+      },
     },
     passwordChangedAt: Date,
     language: {
@@ -55,7 +57,9 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
       select: false
-    }
+    },
+    passwordResetToken: String,  // Add this field for password reset token
+    passwordResetExpires: Date,  // Add this field for password reset expiration
   },
   {
     toJSON: { virtuals: true },
