@@ -1,5 +1,4 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -9,6 +8,8 @@ import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 import hpp from 'hpp';
 import rateLimit from 'express-rate-limit';
+
+import connectDB from './config/db.js';
 
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -23,11 +24,14 @@ dotenv.config();
 const app = express();
 
 // Enable CORS
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? [process.env.CLIENT_URL]
+  : ['http://localhost:4200'];
+
 app.use(cors({
-  origin: ['http://localhost:4200'],
+  origin: allowedOrigins,
   credentials: true
 }));
-
 
 // Set security HTTP headers
 app.use(helmet());
@@ -37,26 +41,22 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Limit requests from same API
+// Rate Limiting
 const limiter = rateLimit({
-  max: 2000,
+  max: process.env.NODE_ENV === 'production' ? 500 : 2000,
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour!'
 });
 app.use('/api', limiter);
 
-// Body parser, reading data from body into req.body
+// Body parser
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
-// Data sanitization against NoSQL query injection
+// Data sanitization
 app.use(mongoSanitize());
-
-// Data sanitization against XSS
 app.use(xss());
-
-// Prevent parameter pollution
 app.use(hpp());
 
 // Routes
@@ -73,18 +73,16 @@ app.all('*', (req, res, next) => {
 // Global error handler
 app.use(globalErrorHandler);
 
-// Connect to DB and start server
+// Start server after DB connection
 const PORT = process.env.PORT || 5000;
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch(err => {
-    console.error('MongoDB connection error:', err);
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
+}).catch(err => {
+  console.error('Failed to connect to MongoDB', err);
+  process.exit(1);
+});
 
 export default app;
