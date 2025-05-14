@@ -5,8 +5,6 @@ import {
   Observable,
   map,
   tap,
-  catchError,
-  throwError,
 } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -29,7 +27,6 @@ export class AuthService {
     private router: Router,
     private toastr: ToastrService,
     private translate: TranslateService,
-    private userService: UserService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     if (isPlatformBrowser(this.platformId)) {

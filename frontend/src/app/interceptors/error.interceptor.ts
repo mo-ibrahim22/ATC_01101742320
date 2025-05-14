@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { catchError, throwError } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 export function errorInterceptor(
   req: HttpRequest<unknown>,
@@ -21,6 +22,7 @@ export function errorInterceptor(
   const router = inject(Router);
   const toastr = inject(ToastrService);
   const translate = inject(TranslateService);
+  const authService = inject(AuthService);
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
@@ -29,7 +31,7 @@ export function errorInterceptor(
           translate.instant('ERRORS.UNAUTHORIZED'),
           translate.instant('ERRORS.ERROR')
         );
-        router.navigate(['/login']);
+        authService.logout();
       } else if (error.status === 403) {
         toastr.error(
           translate.instant('ERRORS.FORBIDDEN'),
