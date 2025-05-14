@@ -3,7 +3,7 @@
   <div class="relative">
     <img [src]="event.image || 'assets/images/event-default.jpg'" [alt]="event.name" class="w-full h-48 object-cover">
     <div class="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded-md text-sm">
-      {{ event.price | currency }}
+      {{ event.price | currency | arabicNumbers }}
     </div>
   </div>
 
@@ -44,7 +44,8 @@
       </svg>
       <span class="text-sm text-gray-700 dark:text-gray-300 font-medium">
         {{ translate.instant('EVENTS.AVAILABLE_TICKETS') }}:
-        <span class="ml-1 font-semibold text-primary-600 dark:text-primary-400">{{ event.availableTickets }}</span>
+        <span class="ml-1 font-semibold text-primary-600 dark:text-primary-400">{{ event.availableTickets |
+          arabicNumbers }}</span>
       </span>
     </div>
 

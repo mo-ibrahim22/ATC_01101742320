@@ -6,13 +6,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from "../../../../components/loading-spinner/loading-spinner.component";
 import { EmptyStateComponent } from "../../../../components/empty-state/empty-state.component";
+import { ArabicNumbersPipe } from "../../../../pipes/arabic-numbers.pipe";
+import { DateFormatPipe } from "../../../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-admin-bookings',
   templateUrl: './admin-bookings.component.html',
   styleUrls: ['./admin-bookings.component.scss'],
   standalone: true,
-  imports: [CommonModule, LoadingSpinnerComponent, EmptyStateComponent],
+  imports: [CommonModule, LoadingSpinnerComponent, EmptyStateComponent, ArabicNumbersPipe, DateFormatPipe],
 })
 export class AdminBookingsComponent implements OnInit {
   bookings: Booking[] = [];

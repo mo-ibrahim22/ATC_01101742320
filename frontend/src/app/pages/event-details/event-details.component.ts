@@ -7,10 +7,12 @@ import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
 
 @Component({
   selector: 'app-event-details',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, DateFormatPipe, ArabicNumbersPipe],
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.scss'],
 })

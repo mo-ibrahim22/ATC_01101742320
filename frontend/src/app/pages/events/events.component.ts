@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { EventCardComponent } from '../../components/event-card/event-card.component';
 import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
+import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
 
 @Component({
   selector: 'app-events',
@@ -17,7 +18,8 @@ import { EmptyStateComponent } from '../../components/empty-state/empty-state.co
     EventCardComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
-  ],
+    ArabicNumbersPipe
+],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
 })

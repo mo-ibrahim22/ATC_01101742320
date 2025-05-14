@@ -4,10 +4,12 @@ import { BookingService } from '../../services/booking.service';
 import { Booking } from '../../models/booking.model';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-booking-confirmation',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ArabicNumbersPipe, DateFormatPipe],
   templateUrl: './booking-confirmation.component.html',
   styleUrls: ['./booking-confirmation.component.scss'],
 })

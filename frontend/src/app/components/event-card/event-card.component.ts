@@ -8,10 +8,11 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { BookingService } from '../../services/booking.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
 
 @Component({
   selector: 'app-event-card',
-  imports: [CommonModule, DateFormatPipe, TruncatePipe, RouterModule],
+  imports: [CommonModule, DateFormatPipe, TruncatePipe, RouterModule, ArabicNumbersPipe],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
 })
