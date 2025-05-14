@@ -1,0 +1,92 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
+  <div *ngIf="isLoading" class="flex justify-center items-center h-64">
+    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+  </div>
+
+  <div *ngIf="!isLoading && event" class="max-w-4xl mx-auto">
+    <button 
+      (click)="goBackToEvents()"
+      class="mb-6 flex items-center text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+    >
+      <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      {{ translate.instant('COMMON.BACK_TO_EVENTS') }}
+    </button>
+
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+      <div class="md:flex">
+        <div class="md:w-1/2">
+          <img 
+            [src]="event.image || 'assets/images/event-default.jpg'" 
+            [alt]="event.name"
+            class="w-full h-full object-cover"
+          >
+        </div>
+        
+        <div class="p-6 md:w-1/2">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="inline-block bg-secondary-100 dark:bg-secondary-800 text-secondary-800 dark:text-secondary-100 text-xs px-2 py-1 rounded mb-2">
+                {{ translate.instant('EVENTS.CATEGORIES.' + event.category.toUpperCase()) }}
+              </span>
+              <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ event.name }}</h1>
+            </div>
+            <span class="text-xl font-semibold text-primary-500">{{ event.price | currency }}</span>
+          </div>
+          
+          <div class="flex items-center text-gray-600 dark:text-gray-300 mb-4">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            {{ event.date | date: 'fullDate' }} at {{ event.date | date: 'shortTime' }}
+          </div>
+          
+          <div class="flex items-center text-gray-600 dark:text-gray-300 mb-6">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            {{ event.venue }}
+          </div>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-6">{{ event.description }}</p>
+          
+          <div *ngIf="event.tags && event.tags.length > 0" class="mb-6">
+            <div class="flex flex-wrap gap-2">
+              <span *ngFor="let tag of event.tags" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs rounded">
+                {{ tag }}
+              </span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <div class="text-sm text-gray-500 dark:text-gray-400">
+              {{ translate.instant('EVENTS.AVAILABLE_TICKETS') }}: {{ event.availableTickets }}
+            </div>
+            
+            <button 
+              *ngIf="authService.isLoggedIn()"
+              (click)="bookEvent()"
+              [disabled]="isBooked"
+              [class.bg-gray-300]="isBooked"
+              [class.cursor-not-allowed]="isBooked"
+              [class.dark:bg-gray-600]="isBooked"
+              class="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+            >
+              {{ isBooked ? translate.instant('EVENTS.BOOKED') : translate.instant('EVENTS.BOOK_NOW') }}
+            </button>
+            
+            <button 
+              *ngIf="!authService.isLoggedIn()"
+              (click)="goToLogin()"
+              class="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+            >
+              {{ translate.instant('EVENTS.LOGIN_TO_BOOK') }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

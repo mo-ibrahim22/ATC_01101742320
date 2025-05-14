@@ -1,0 +1,118 @@
+<header class="bg-white dark:bg-gray-800 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a [routerLink]="['/']" class="flex items-center">
+          <span class="text-xl font-bold text-primary-500"> {{ translate.instant('COMMON.APP_NAME') }}
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a [routerLink]="['/']"
+          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+          {{ translate.instant('EVENTS.EVENTS') }}
+        </a>
+
+        <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']"
+          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+          {{ translate.instant('PROFILE.MY_BOOKINGS') }}
+        </a>
+
+        <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']"
+          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+          {{ translate.instant('ADMIN.DASHBOARD') }}
+        </a>
+      </nav>
+
+      <!-- Right side controls -->
+      <div class="flex items-center space-x-4">
+
+
+        <!-- Theme Toggle -->
+        <app-theme-switcher></app-theme-switcher>
+        <!-- Language Switcher -->
+        <app-language-switcher></app-language-switcher>
+
+        <!-- Auth Buttons -->
+        <div *ngIf="!authService.isLoggedIn()" class="hidden md:flex items-center space-x-2">
+          <a [routerLink]="['/login']"
+            class="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+            {{ translate.instant('AUTH.LOGIN') }}
+          </a>
+          <a [routerLink]="['/register']"
+            class="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors">
+            {{ translate.instant('AUTH.REGISTER') }}
+          </a>
+        </div>
+
+        <!-- User Profile Dropdown -->
+        <div *ngIf="authService.isLoggedIn()" class="relative">
+          <button (click)="toggleProfileMenu()" class="flex items-center space-x-2 focus:outline-none">
+            <img [src]="authService.getCurrentUser()?.photo || 'assets/images/user-default.png'" alt="User Profile"
+              class="w-8 h-8 rounded-full">
+            <span class="text-gray-700 dark:text-gray-300">{{ authService.getCurrentUser()?.name }}</span>
+          </button>
+
+          <!-- Profile Dropdown -->
+          <div *ngIf="isProfileMenuOpen"
+            class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
+            <a [routerLink]="['/profile']"
+              class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+              {{ translate.instant('PROFILE.PROFILE') }}
+            </a>
+            <button (click)="logout()"
+              class="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+              {{ translate.instant('AUTH.LOGOUT') }}
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button (click)="toggleMenu()"
+          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div *ngIf="isMenuOpen" class="md:hidden bg-white dark:bg-gray-800 shadow-md">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a [routerLink]="['/']"
+        class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+        {{ translate.instant('EVENTS.EVENTS') }}
+      </a>
+
+      <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']"
+        class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+        {{ translate.instant('PROFILE.MY_BOOKINGS') }}
+      </a>
+
+      <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']"
+        class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+        {{ translate.instant('ADMIN.DASHBOARD') }}
+      </a>
+
+      <div *ngIf="!authService.isLoggedIn()" class="pt-4 pb-2 border-t border-gray-200 dark:border-gray-700">
+        <a [routerLink]="['/login']"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+          {{ translate.instant('AUTH.LOGIN') }}
+        </a>
+        <a [routerLink]="['/register']"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+          {{ translate.instant('AUTH.REGISTER') }}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

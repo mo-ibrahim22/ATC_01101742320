@@ -1,0 +1,107 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                {{ translate.instant('PROFILE.MY_BOOKINGS') }}
+            </h1>
+            <a [routerLink]="['/events']"
+                class="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors">
+                {{ translate.instant('EVENTS.EVENTS') }}
+            </a>
+        </div>
+
+        <!-- Loading State -->
+        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+
+        <!-- Bookings List -->
+        <div *ngIf="!isLoading">
+            <!-- Empty State -->
+            <app-empty-state *ngIf="bookings.length === 0" [title]="translate.instant('BOOKING.NO_BOOKINGS')"
+                [message]="translate.instant('BOOKING.NO_BOOKINGS_MESSAGE')" />
+
+            <!-- Bookings Table -->
+            <div *ngIf="bookings.length > 0" class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead class="bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    {{ translate.instant('BOOKING.EVENT') }}
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    {{ translate.instant('BOOKING.DATE') }}
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    {{ translate.instant('BOOKING.PRICE') }}
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    {{ translate.instant('BOOKING.STATUS') }}
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    {{ translate.instant('COMMON.ACTIONS') }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr *ngFor="let booking of bookings">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-10 w-10">
+                                            <img class="h-10 w-10 rounded-full object-cover"
+                                                [src]="booking.event?.image || 'assets/images/event-default.jpg'"
+                                                [alt]="booking.event?.name">
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                                {{ booking.event?.name }}
+                                            </div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400">
+                                                {{ translate.instant('EVENTS.CATEGORIES.' + (booking.event?.category ||
+                                                '').toUpperCase()) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900 dark:text-white">
+                                        {{ booking.createdAt | date: 'mediumDate' }}
+                                    </div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                                        {{ booking.createdAt | date: 'shortTime' }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                                    {{ booking.price | currency }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span [class.bg-green-100]="booking.paid" [class.text-green-800]="booking.paid"
+                                        [class.bg-yellow-100]="!booking.paid" [class.text-yellow-800]="!booking.paid"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                                        {{ booking.paid ? translate.instant('BOOKING.PAID') :
+                                        translate.instant('BOOKING.PENDING') }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button (click)="cancelBooking(booking._id)"
+                                        class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors mr-4">
+                                        {{ translate.instant('COMMON.CANCEL') }}
+                                    </button>
+                                    <a [routerLink]="['/events', booking.event?._id]"
+                                        class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                        {{ translate.instant('COMMON.VIEW') }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full text-center">
+    <h1 class="text-9xl font-bold text-primary-500">404</h1>
+    <h2 class="mt-6 text-2xl font-bold text-gray-900 dark:text-white">
+      {{ translate.instant('ERRORS.PAGE_NOT_FOUND') }}
+    </h2>
+    <p class="mt-2 text-gray-600 dark:text-gray-300">
+      {{ translate.instant('ERRORS.PAGE_NOT_FOUND_DESCRIPTION') }}
+    </p>
+    <div class="mt-6">
+      <button 
+        routerLink="/"
+        class="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors"
+      >
+        {{ translate.instant('ERRORS.GO_HOME') }}
+      </button>
+    </div>
+  </div>
+</div>

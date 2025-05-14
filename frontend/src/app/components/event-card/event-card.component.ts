@@ -1,0 +1,55 @@
+import { Component, Input } from '@angular/core';
+import { Event } from '../../models/event.model';
+import { Router, RouterModule } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { DateFormatPipe } from '../../pipes/date-format.pipe';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { BookingService } from '../../services/booking.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
+
+@Component({
+  selector: 'app-event-card',
+  imports: [CommonModule, DateFormatPipe, TruncatePipe,RouterModule],
+  templateUrl: './event-card.component.html',
+  styleUrls: ['./event-card.component.scss'],
+})
+export class EventCardComponent {
+  @Input() event!: Event;
+
+  constructor(
+    private router: Router,
+    public translate: TranslateService,
+    private bookingService: BookingService,
+    public authService: AuthService,
+
+    private toastr: ToastrService
+  ) {}
+
+  viewDetails(eventId: string): void {
+    this.router.navigate(['/events', eventId]);
+  }
+
+  bookEvent(eventId: string): void {
+    if (!eventId) return;
+
+    this.bookingService.bookEvent(eventId).subscribe({
+      next: (booking) => {
+        this.toastr.success(
+          this.translate.instant('BOOKING.SUCCESS_MESSAGE'),
+          this.translate.instant('COMMON.SUCCESS')
+        );
+        this.router.navigate(['/booking-confirmation', booking._id]);
+      },
+      error: () => {
+        this.toastr.error(
+          this.translate.instant('BOOKING.ERROR_MESSAGE'),
+          this.translate.instant('ERRORS.ERROR')
+        );
+      },
+    });
+  }
+
+  
+}

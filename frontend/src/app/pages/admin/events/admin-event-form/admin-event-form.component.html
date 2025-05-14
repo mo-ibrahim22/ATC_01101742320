@@ -1,0 +1,196 @@
+<div class="p-6">
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+      {{ isEditMode ? translate.instant('ADMIN.EDIT_EVENT') : translate.instant('ADMIN.ADD_EVENT') }}
+    </h2>
+  </div>
+
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Event Name -->
+      <div class="col-span-2">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.EVENT_NAME') }}
+        </label>
+        <input
+          formControlName="name"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('name')?.invalid && eventForm.get('name')?.touched"
+        >
+        <div *ngIf="eventForm.get('name')?.invalid && eventForm.get('name')?.touched" class="text-red-500 text-xs mt-1">
+          {{ translate.instant('EVENTS.EVENT_NAME_REQUIRED') }}
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="col-span-2">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.DESCRIPTION') }}
+        </label>
+        <textarea
+          formControlName="description"
+          rows="3"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('description')?.invalid && eventForm.get('description')?.touched"
+        ></textarea>
+        <div *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched" class="text-red-500 text-xs mt-1">
+          {{ translate.instant('EVENTS.DESCRIPTION_REQUIRED') }}
+        </div>
+      </div>
+
+      <!-- Category -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.CATEGORY') }}
+        </label>
+        <select
+          formControlName="category"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('category')?.invalid && eventForm.get('category')?.touched"
+        >
+          <option value="">{{ translate.instant('COMMON.SELECT') }}</option>
+          <option value="music">{{ translate.instant('EVENTS.CATEGORIES.MUSIC') }}</option>
+          <option value="sports">{{ translate.instant('EVENTS.CATEGORIES.SPORTS') }}</option>
+          <option value="business">{{ translate.instant('EVENTS.CATEGORIES.BUSINESS') }}</option>
+          <option value="technology">{{ translate.instant('EVENTS.CATEGORIES.TECHNOLOGY') }}</option>
+          <option value="arts">{{ translate.instant('EVENTS.CATEGORIES.ARTS') }}</option>
+          <option value="food">{{ translate.instant('EVENTS.CATEGORIES.FOOD') }}</option>
+          <option value="other">{{ translate.instant('EVENTS.CATEGORIES.OTHER') }}</option>
+        </select>
+        <div *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched" class="text-red-500 text-xs mt-1">
+          {{ translate.instant('EVENTS.CATEGORY_REQUIRED') }}
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.DATE') }}
+        </label>
+        <input
+          formControlName="date"
+          type="datetime-local"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('date')?.invalid && eventForm.get('date')?.touched"
+        >
+        <div *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched" class="text-red-500 text-xs mt-1">
+          {{ translate.instant('EVENTS.DATE_REQUIRED') }}
+        </div>
+      </div>
+
+      <!-- Venue -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.VENUE') }}
+        </label>
+        <input
+          formControlName="venue"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('venue')?.invalid && eventForm.get('venue')?.touched"
+        >
+        <div *ngIf="eventForm.get('venue')?.invalid && eventForm.get('venue')?.touched" class="text-red-500 text-xs mt-1">
+          {{ translate.instant('EVENTS.VENUE_REQUIRED') }}
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.PRICE') }}
+        </label>
+        <input
+          formControlName="price"
+          type="number"
+          min="0"
+          step="0.01"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('price')?.invalid && eventForm.get('price')?.touched"
+        >
+        <div *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched" class="text-red-500 text-xs mt-1">
+          <span *ngIf="eventForm.get('price')?.errors?.['required']">
+            {{ translate.instant('EVENTS.PRICE_REQUIRED') }}
+          </span>
+          <span *ngIf="eventForm.get('price')?.errors?.['min']">
+            {{ translate.instant('EVENTS.PRICE_MIN') }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Available Tickets -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.AVAILABLE_TICKETS') }}
+        </label>
+        <input
+          formControlName="availableTickets"
+          type="number"
+          min="1"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          [class.border-red-500]="eventForm.get('availableTickets')?.invalid && eventForm.get('availableTickets')?.touched"
+        >
+        <div *ngIf="eventForm.get('availableTickets')?.invalid && eventForm.get('availableTickets')?.touched" class="text-red-500 text-xs mt-1">
+          <span *ngIf="eventForm.get('availableTickets')?.errors?.['required']">
+            {{ translate.instant('EVENTS.TICKETS_REQUIRED') }}
+          </span>
+          <span *ngIf="eventForm.get('availableTickets')?.errors?.['min']">
+            {{ translate.instant('EVENTS.TICKETS_MIN') }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.TAGS') }} ({{ translate.instant('COMMON.COMMA_SEPARATED') }})
+        </label>
+        <input
+          formControlName="tags"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+        >
+      </div>
+
+      <!-- Image Upload -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          {{ translate.instant('EVENTS.IMAGE') }}
+        </label>
+        <div class="flex items-center">
+          <div class="relative">
+            <img 
+              [src]="imagePreview || 'assets/images/event-default.jpg'" 
+              alt="Event Image Preview"
+              class="h-32 w-32 rounded-lg object-cover border border-gray-300 dark:border-gray-700"
+            >
+            <label for="event-image" class="absolute bottom-0 right-0 bg-primary-500 text-white p-2 rounded-full cursor-pointer hover:bg-primary-600 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <input id="event-image" type="file" accept="image/*" (change)="onImageChange($event)" class="hidden">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+      <a 
+        [routerLink]="['/admin/events']"
+        class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+      >
+        {{ translate.instant('COMMON.CANCEL') }}
+      </a>
+      <button
+        type="submit"
+        [disabled]="eventForm.invalid || isLoading"
+        class="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+      >
+        <span *ngIf="!isLoading">{{ isEditMode ? translate.instant('COMMON.UPDATE') : translate.instant('COMMON.CREATE') }}</span>
+        <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>
