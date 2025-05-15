@@ -79,7 +79,8 @@
   <!-- Mobile menu -->
   <div *ngIf="isMenuOpen" class="md:hidden bg-white dark:bg-gray-800 shadow-md">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a [routerLink]="['/']" routerLinkActive="router-active-link" class="block px-3 py-2 header-link">{{
+      <a [routerLink]="['/']" routerLinkActive="router-active-link" [routerLinkActiveOptions]="{ exact: true }"
+        class="block px-3 py-2 header-link">{{
         translate.instant('EVENTS.EVENTS') }}</a>
 
       <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']" routerLinkActive="router-active-link"
