@@ -117,8 +117,8 @@
     "NO_BOOKINGS_MESSAGE": "You can book events from the events page.",
     "CANCEL_SUCCESS_MESSAGE": "Your booking has been canceled successfully.",
     "CANCEL_ERROR_MESSAGE": "Failed to cancel your booking. Please try again.",
-    "CONFIRM_CANCEL_TITLE": "Are you sure?",
-    "CONFIRM_CANCEL_TEXT": "You are about to cancel this booking.",
+    "CONFIRM_CANCEL_TITLE": "You are about to cancel this booking",
+    "CONFIRM_CANCEL_TEXT": "Are you sure you want to cancel this booking?",
     "CANCEL_SUCCESS": "Booking cancelled successfully.",
     "CANCEL_ERROR": "Could not cancel the booking.",
     "LOAD_ERROR": "Could not load bookings."

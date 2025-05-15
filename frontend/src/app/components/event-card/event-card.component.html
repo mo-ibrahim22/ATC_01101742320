@@ -1,7 +1,7 @@
 <div class="card">
   <div class="relative">
     <img [src]="event.image || 'assets/images/event-default.jpg'" [alt]="event.name" class="w-full h-48 object-cover">
-    <div class="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded-md text-sm">
+    <div class="absolute top-2 left-2 bg-primary-500 text-white px-2 py-1 rounded-md text-sm">
       {{ event.price | currency | arabicNumbers }}
     </div>
   </div>
@@ -49,8 +49,7 @@
     </div>
 
     <div class="flex justify-between items-center">
-      <button (click)="viewDetails(event._id)"
-        class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+      <button (click)="viewDetails(event._id)" class="btn-secondary">
         {{ translate.instant('COMMON.VIEW_DETAILS') }}
       </button>
 
@@ -59,9 +58,8 @@
           {{ translate.instant('EVENTS.BOOK_NOW') }}
         </button>
 
-        <button *ngIf="event.isBooked" (click)="cancelBooking(event.bookingId!)"
-          class="px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors">
-          {{ translate.instant('EVENTS.CANCEL_BOOKING') }}
+        <button *ngIf="event.isBooked" (click)="cancelBooking(event.bookingId!)" class="btn-success">
+          {{ translate.instant('EVENTS.BOOKED') }}
         </button>
       </ng-container>
 

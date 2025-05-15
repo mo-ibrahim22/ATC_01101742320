@@ -4,8 +4,8 @@ import { BookingService } from '../../services/booking.service';
 import { Booking } from '../../models/booking.model';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
-import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { ArabicNumbersPipe } from '../../pipes/arabic-numbers.pipe';
+import { DateFormatPipe } from '../../pipes/date-format.pipe';
 
 @Component({
   selector: 'app-booking-confirmation',
@@ -14,7 +14,7 @@ import { DateFormatPipe } from "../../pipes/date-format.pipe";
   styleUrls: ['./booking-confirmation.component.scss'],
 })
 export class BookingConfirmationComponent implements OnInit {
-  booking: any | null = null;
+  booking: Booking | undefined;
   isLoading = true;
 
   constructor(
@@ -37,7 +37,7 @@ export class BookingConfirmationComponent implements OnInit {
     this.isLoading = true;
     this.bookingService.getUserBookings().subscribe({
       next: (bookings) => {
-        this.booking = bookings.find((b) => b._id === bookingId) || null;
+        this.booking = bookings.find((b) => b._id === bookingId) || undefined;
         this.isLoading = false;
 
         if (!this.booking) {

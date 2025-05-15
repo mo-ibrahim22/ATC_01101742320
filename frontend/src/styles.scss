@@ -7,6 +7,7 @@
 
 /* Custom styles */
 @layer components {
+
   .btn-primary {
     @apply px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors;
   }
@@ -19,6 +20,10 @@
     @apply px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors;
   }
   
+  .btn-success {
+    @apply px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors;
+  }
+
   .form-input {
     @apply w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500;
   }
@@ -29,6 +34,10 @@
   
   .card {
     @apply bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
+  }
+
+  .table-header {
+    @apply px-6 py-3 text-left rtl:text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider;
   }
 }
 

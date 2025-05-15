@@ -15,28 +15,22 @@
       <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
         <thead class="bg-gray-50 dark:bg-gray-700">
           <tr>
-            <th scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th scope="col" class="table-header">
               {{ translate.instant('BOOKING.EVENT') }}
             </th>
-            <th scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th scope="col" class="table-header">
               {{ translate.instant('BOOKING.USER') }}
             </th>
-            <th scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th scope="col" class="table-header">
               {{ translate.instant('BOOKING.DATE') }}
             </th>
-            <th scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th scope="col" class="table-header">
               {{ translate.instant('BOOKING.PRICE') }}
             </th>
-            <th scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th scope="col" class="table-header">
               {{ translate.instant('BOOKING.STATUS') }}
             </th>
-            <th scope="col"
-              class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+            <th scope="col" class="table-header text-right">
               {{ translate.instant('COMMON.ACTIONS') }}
             </th>
           </tr>
@@ -49,7 +43,7 @@
                   <img class="h-10 w-10 rounded-full object-cover"
                     [src]="booking.event.image || 'assets/images/event-default.jpg'" [alt]="booking.event.name">
                 </div>
-                <div class="ml-4">
+                <div class="ml-4 rtl:ml-0 rtl:mr-4">
                   <div class="text-sm font-medium text-gray-900 dark:text-white">
                     {{ booking.event.name }}
                   </div>
@@ -65,7 +59,7 @@
                   <img class="h-10 w-10 rounded-full object-cover"
                     [src]="booking.user.photo || 'assets/images/user-default.png'" [alt]="booking.user.name">
                 </div>
-                <div class="ml-4">
+                <div class="ml-4 rtl:ml-0 rtl:mr-4">
                   <div class="text-sm font-medium text-gray-900 dark:text-white">
                     {{ booking.user.name }}
                   </div>

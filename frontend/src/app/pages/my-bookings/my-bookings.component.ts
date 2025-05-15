@@ -10,7 +10,6 @@ import { LoadingSpinnerComponent } from '../../components/loading-spinner/loadin
 import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
 import { ArabicNumbersPipe } from '../../pipes/arabic-numbers.pipe';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
-import Swal from 'sweetalert2';
 import { AlertService } from '../../services/alert.service';
 
 @Component({
@@ -36,6 +35,7 @@ export class MyBookingsComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private toastr: ToastrService,
+
     public translate: TranslateService
   ) {}
 

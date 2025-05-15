@@ -26,7 +26,7 @@ export class AlertService {
           'bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg shadow-lg',
         title: 'text-lg font-semibold',
         confirmButton:
-          'bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded mr-6',
+          'bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded mx-6',
         cancelButton:
           'bg-gray-300 hover:bg-gray-400 text-black dark:bg-gray-600 dark:hover:bg-gray-700 dark:text-white font-medium px-4 py-2 rounded',
       },
