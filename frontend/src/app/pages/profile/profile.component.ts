@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +34,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService,
     public translate: TranslateService,
+    private alertService: AlertService,
     private router: Router
   ) {}
 
@@ -121,44 +128,57 @@ export class ProfileComponent implements OnInit {
   updatePassword(): void {
     if (this.passwordForm.invalid) return;
 
-    const { currentPassword, newPassword, confirmPassword } = this.passwordForm.value;
+    const { currentPassword, newPassword, confirmPassword } =
+      this.passwordForm.value;
 
-    this.userService.updatePassword(currentPassword!, newPassword!, confirmPassword!).subscribe({
-      next: () => {
-        this.isChangingPassword = false;
-        this.passwordForm.reset();
-        this.toastr.success(
-          this.translate.instant('PROFILE.PASSWORD_UPDATED'),
-          this.translate.instant('COMMON.SUCCESS')
-        );
-      },
-      error: () => {
-        this.toastr.error(
-          this.translate.instant('PROFILE.PASSWORD_UPDATE_ERROR'),
-          this.translate.instant('ERRORS.ERROR')
-        );
-      },
-    });
-  }
-
-  deleteAccount(): void {
-    if (confirm(this.translate.instant('PROFILE.CONFIRM_DELETE_ACCOUNT'))) {
-      this.userService.deleteMe().subscribe({
+    this.userService
+      .updatePassword(currentPassword!, newPassword!, confirmPassword!)
+      .subscribe({
         next: () => {
-          this.authService.logout();
-          this.router.navigate(['/']);
+          this.isChangingPassword = false;
+          this.passwordForm.reset();
           this.toastr.success(
-            this.translate.instant('PROFILE.ACCOUNT_DELETED'),
+            this.translate.instant('PROFILE.PASSWORD_UPDATED'),
             this.translate.instant('COMMON.SUCCESS')
           );
         },
         error: () => {
           this.toastr.error(
-            this.translate.instant('PROFILE.DELETE_ERROR'),
+            this.translate.instant('PROFILE.PASSWORD_UPDATE_ERROR'),
             this.translate.instant('ERRORS.ERROR')
           );
         },
       });
-    }
+  }
+
+  deleteAccount(): void {
+    this.alertService
+      .confirm({
+        title: this.translate.instant('PROFILE.CONFIRM_DELETE_TITLE'),
+        text: this.translate.instant('PROFILE.CONFIRM_DELETE_ACCOUNT'),
+        icon: 'warning',
+        confirmButtonText: this.translate.instant('COMMON.YES'),
+        cancelButtonText: this.translate.instant('COMMON.NO'),
+      })
+      .then((confirmed) => {
+        if (confirmed) {
+          this.userService.deleteMe().subscribe({
+            next: () => {
+              this.authService.logout();
+              this.router.navigate(['/']);
+              this.toastr.success(
+                this.translate.instant('PROFILE.ACCOUNT_DELETED'),
+                this.translate.instant('COMMON.SUCCESS')
+              );
+            },
+            error: () => {
+              this.toastr.error(
+                this.translate.instant('PROFILE.DELETE_ERROR'),
+                this.translate.instant('ERRORS.ERROR')
+              );
+            },
+          });
+        }
+      });
   }
 }

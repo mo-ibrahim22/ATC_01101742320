@@ -98,9 +98,18 @@ export class AdminEventFormComponent implements OnInit {
 
     this.isLoading = true;
     const formData = new FormData();
+
     Object.keys(this.eventForm.controls).forEach((key) => {
-      const value = this.eventForm.get(key)?.value;
-      if (value !== null && value !== undefined) {
+      let value = this.eventForm.get(key)?.value;
+
+      // Special handling for tags (convert from comma-separated string to array)
+      if (key === 'tags' && typeof value === 'string') {
+        const tagsArray = value
+          .split(',')
+          .map((tag: string) => tag.trim())
+          .filter((tag: string) => tag.length > 0);
+        tagsArray.forEach((tag) => formData.append('tags[]', tag));
+      } else if (value !== null && value !== undefined) {
         formData.append(key, value);
       }
     });

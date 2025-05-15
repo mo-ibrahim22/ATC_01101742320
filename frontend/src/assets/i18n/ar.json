@@ -116,7 +116,12 @@
     "NO_BOOKINGS": "لا توجد حجوزات",
     "NO_BOOKINGS_MESSAGE": "لم تقم بحجز أي فعاليات بعد.",
     "CANCEL_SUCCESS_MESSAGE": "تم إلغاء الحجز بنجاح",
-    "CANCEL_ERROR_MESSAGE": "خطأ في إلغاء الحجز"
+    "CANCEL_ERROR_MESSAGE": "خطأ في إلغاء الحجز",
+    "CONFIRM_CANCEL_TITLE": "تأكيد إلغاء الحجز",
+    "CONFIRM_CANCEL_TEXT": "هل أنت متأكد أنك تريد إلغاء هذا الحجز؟",
+    "CANCEL_SUCCESS": "تم إلغاء الحجز بنجاح",
+    "CANCEL_ERROR": "خطأ في إلغاء الحجز",
+    "LOAD_ERROR": "خطأ في تحميل الحجوزات"
   },
   "PROFILE": {
     "PROFILE": "الملف الشخصي",
@@ -140,12 +145,14 @@
     "PASSWORD_UPDATED": "تم تحديث كلمة المرور بنجاح",
     "PASSWORD_UPDATE_ERROR": "خطأ في تحديث كلمة المرور",
     "DELETE_ACCOUNT": "حذف الحساب",
+    "CONFIRM_DELETE_TITLE": "انت على وشك حذف حسابك",
     "CONFIRM_DELETE_ACCOUNT": "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء.",
     "ACCOUNT_DELETED": "تم حذف الحساب بنجاح",
     "DELETE_ERROR": "خطأ في حذف الحساب"
   },
   "ADMIN": {
     "DASHBOARD": "لوحة التحكم",
+    "MANAGEMENT": "الإدارة",
     "MANAGE_EVENTS": "إدارة الفعاليات",
     "MANAGE_BOOKINGS": "إدارة الحجوزات",
     "MANAGE_USERS": "إدارة المستخدمين",
@@ -173,7 +180,11 @@
     "USER_UPDATE_ERROR": "خطأ في تحديث المستخدم",
     "USERS_LOAD_ERROR": "خطأ في تحميل المستخدمين",
     "NO_USERS": "لا يوجد مستخدمين",
-    "CONFIRM_DELETE_USER": "هل أنت متأكد من حذف هذا المستخدم؟"
+    "CONFIRM_DELETE_TITLE": "انت على وشك الحذف",
+    "CONFIRM_DELETE_USER": "هل أنت متأكد من حذف هذا المستخدم؟",
+    "CONFIRM_UPDATE_TITLE": "انت على وشك تحديث هذا المستخدم",
+    "CONFIRM_MAKE_ADMIN": "هل تريد منح صلاحيات المسؤول لهذا المستخدم؟",
+    "CONFIRM_REMOVE_ADMIN": "هل تريد سحب صلاحيات المسؤول من هذا المستخدم؟"
   },
   "ERRORS": {
     "ERROR": "خطأ",

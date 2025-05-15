@@ -8,11 +8,18 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { BookingService } from '../../services/booking.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
-import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
+import { ArabicNumbersPipe } from '../../pipes/arabic-numbers.pipe';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-event-card',
-  imports: [CommonModule, DateFormatPipe, TruncatePipe, RouterModule, ArabicNumbersPipe],
+  imports: [
+    CommonModule,
+    DateFormatPipe,
+    TruncatePipe,
+    RouterModule,
+    ArabicNumbersPipe,
+  ],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
 })
@@ -24,6 +31,7 @@ export class EventCardComponent {
     public translate: TranslateService,
     private bookingService: BookingService,
     public authService: AuthService,
+    private alertService: AlertService,
 
     private toastr: ToastrService
   ) {}
@@ -61,21 +69,32 @@ export class EventCardComponent {
       return;
     }
 
-    this.bookingService.deleteBooking(bookingId).subscribe({
-      next: () => {
-        this.toastr.success(
-          this.translate.instant('BOOKING.CANCEL_SUCCESS_MESSAGE'),
-          this.translate.instant('COMMON.SUCCESS')
-        );
-        this.event.isBooked = false;
-        this.event.bookingId = "";
-      },
-      error: () => {
-        this.toastr.error(
-          this.translate.instant('BOOKING.CANCEL_ERROR_MESSAGE'),
-          this.translate.instant('ERRORS.ERROR')
-        );
-      },
-    });
+    this.alertService
+      .confirm({
+        title: this.translate.instant('BOOKING.CONFIRM_CANCEL_TITLE'),
+        text: this.translate.instant('BOOKING.CONFIRM_CANCEL_TEXT'),
+        confirmButtonText: this.translate.instant('COMMON.YES'),
+        cancelButtonText: this.translate.instant('COMMON.NO'),
+      })
+      .then((confirmed) => {
+        if (confirmed) {
+          this.bookingService.deleteBooking(bookingId).subscribe({
+            next: () => {
+              this.toastr.success(
+                this.translate.instant('BOOKING.CANCEL_SUCCESS_MESSAGE'),
+                this.translate.instant('COMMON.SUCCESS')
+              );
+              this.event.isBooked = false;
+              this.event.bookingId = '';
+            },
+            error: () => {
+              this.toastr.error(
+                this.translate.instant('BOOKING.CANCEL_ERROR_MESSAGE'),
+                this.translate.instant('ERRORS.ERROR')
+              );
+            },
+          });
+        }
+      });
   }
 }
