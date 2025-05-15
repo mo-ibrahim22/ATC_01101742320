@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
     <div class="text-center">
-      <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">
+      <h2 class="mt-2 page-title">
         {{ translate.instant('AUTH.LOGIN') }}
       </h2>
       <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
@@ -16,13 +16,12 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
       <div class="space-y-4">
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label for="email" class="form-label">
             {{ translate.instant('AUTH.EMAIL') }}
           </label>
           <input id="email" type="email" formControlName="email" autocomplete="email" class="form-input"
             [class.border-red-500]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-            class="text-red-500 text-xs mt-1">
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="form-error">
             <span *ngIf="loginForm.get('email')?.errors?.['required']">
               {{ translate.instant('AUTH.EMAIL') }} {{ translate.instant('COMMON.REQUIRED') }}
             </span>
@@ -33,14 +32,13 @@
         </div>
 
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label for="password" class="form-label">
             {{ translate.instant('AUTH.PASSWORD') }}
           </label>
           <input id="password" type="password" formControlName="password" autocomplete="current-password"
             class="form-input"
             [class.border-red-500]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-            class="text-red-500 text-xs mt-1">
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="form-error">
             <span *ngIf="loginForm.get('password')?.errors?.['required']">
               {{ translate.instant('AUTH.PASSWORD') }} {{ translate.instant('COMMON.REQUIRED') }}
             </span>

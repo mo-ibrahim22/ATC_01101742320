@@ -1,6 +1,6 @@
 <div class="p-6">
   <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+    <h2 class="page-title">
       {{ translate.instant('ADMIN.MANAGE_EVENTS') }}
     </h2>
     <a [routerLink]="['/admin/events/new']" class="btn-primary flex items-center rtl:flex-row-reverse">
@@ -15,10 +15,10 @@
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
   <!-- Events Table -->
-  <div *ngIf="!isLoading" class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
-    <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead class="bg-gray-50 dark:bg-gray-700">
+  <div *ngIf="!isLoading" class="table-div">
+    <div class="table-container">
+      <table class="table-shape">
+        <thead class="table-head-bg">
           <tr>
             <th scope="col" class="table-header">
               {{ translate.instant('EVENTS.EVENT') }}
@@ -37,9 +37,9 @@
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody class="table-body">
           <tr *ngFor="let event of events">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <div class="flex items-center ">
                 <div class="flex-shrink-0 h-10 w-10">
                   <img class="h-10 w-10 rounded-full object-cover"
@@ -55,13 +55,13 @@
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <span
                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-secondary-100 dark:bg-secondary-800 text-secondary-800 dark:text-secondary-100">
                 {{ translate.instant('EVENTS.CATEGORIES.' + event.category.toUpperCase()) }}
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <div class="text-sm text-gray-900 dark:text-white">
                 {{ event.date | dateFormat: 'PP' | arabicNumbers }}
               </div>
@@ -69,16 +69,14 @@
                 {{ event.date | dateFormat: 'p' | arabicNumbers }}
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+            <td class="table-cell text-sm text-gray-900 dark:text-white">
               {{ event.price | currency | arabicNumbers }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right rtl:text-left text-sm font-medium">
-              <a [routerLink]="['/admin/events', event._id, 'edit']"
-                class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors mr-4 rtl:mr-0 rtl:ml-4">
+            <td class="table-cell text-right rtl:text-left text-sm font-medium">
+              <a [routerLink]="['/admin/events', event._id, 'edit']" class="edit-link">
                 {{ translate.instant('COMMON.EDIT') }}
               </a>
-              <button (click)="deleteEvent(event._id)"
-                class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors">
+              <button (click)="deleteEvent(event._id)" class="delete-link">
                 {{ translate.instant('COMMON.DELETE') }}
               </button>
             </td>

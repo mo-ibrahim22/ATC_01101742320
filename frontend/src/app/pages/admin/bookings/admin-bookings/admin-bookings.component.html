@@ -1,6 +1,6 @@
 <div class="p-6">
   <div class="mb-6">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+    <h2 class="page-title">
       {{ translate.instant('ADMIN.MANAGE_BOOKINGS') }}
     </h2>
   </div>
@@ -10,10 +10,10 @@
 
 
   <!-- Bookings Table -->
-  <div *ngIf="!isLoading" class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
-    <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead class="bg-gray-50 dark:bg-gray-700">
+  <div *ngIf="!isLoading" class="table-div">
+    <div class="table-container">
+      <table class="table-shape">
+        <thead class="table-head-bg">
           <tr>
             <th scope="col" class="table-header">
               {{ translate.instant('BOOKING.EVENT') }}
@@ -35,9 +35,9 @@
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody class="table-body">
           <tr *ngFor="let booking of bookings">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <div class="flex items-center">
                 <div class="flex-shrink-0 h-10 w-10">
                   <img class="h-10 w-10 rounded-full object-cover"
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <div class="flex items-center">
                 <div class="flex-shrink-0 h-10 w-10">
                   <img class="h-10 w-10 rounded-full object-cover"
@@ -69,7 +69,7 @@
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <div class="text-sm text-gray-900 dark:text-white">
                 {{ booking.createdAt | dateFormat: 'PP' | arabicNumbers }}
               </div>
@@ -77,19 +77,18 @@
                 {{ booking.createdAt | dateFormat: 'p' | arabicNumbers }}
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+            <td class="table-cell text-sm text-gray-900 dark:text-white">
               {{ booking.price | currency | arabicNumbers }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <span [class.bg-green-100]="booking.paid" [class.text-green-800]="booking.paid"
                 [class.bg-yellow-100]="!booking.paid" [class.text-yellow-800]="!booking.paid"
                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
                 {{ booking.paid ? translate.instant('BOOKING.PAID') : translate.instant('BOOKING.PENDING') }}
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button (click)="deleteBooking(booking._id)"
-                class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors">
+            <td class="table-cell text-right text-sm font-medium">
+              <button (click)="deleteBooking(booking._id)" class="delete-link">
                 {{ translate.instant('COMMON.DELETE') }}
               </button>
             </td>

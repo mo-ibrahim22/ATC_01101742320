@@ -1,4 +1,4 @@
-<header  class="bg-white dark:bg-gray-800 shadow-sm">
+<header class="bg-white dark:bg-gray-800 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
@@ -12,16 +12,16 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-        <a [routerLink]="['/']"
-          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+        <a [routerLink]="['/']" routerLinkActive="router-active-link" [routerLinkActiveOptions]="{ exact: true }"
+          class="header-link">{{
           translate.instant('EVENTS.EVENTS') }}</a>
 
-        <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']"
-          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+        <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']" routerLinkActive="router-active-link"
+          class="header-link">{{
           translate.instant('PROFILE.MY_BOOKINGS') }}</a>
 
-        <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']"
-          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+        <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']" routerLinkActive="router-active-link"
+          class="header-link">{{
           translate.instant('ADMIN.DASHBOARD') }}</a>
       </nav>
 
@@ -34,8 +34,7 @@
 
         <!-- Auth Buttons -->
         <div *ngIf="!authService.isLoggedIn()" class="hidden md:flex items-center space-x-2 rtl:space-x-reverse ">
-          <a [routerLink]="['/login']"
-            class="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+          <a [routerLink]="['/login']" routerLinkActive="router-active-link" class="px-4 py-2 header-link">{{
             translate.instant('AUTH.LOGIN') }}</a>
           <a [routerLink]="['/register']" class="btn-primary">
             {{ translate.instant('AUTH.REGISTER') }}
@@ -44,7 +43,8 @@
 
         <!-- User Profile Dropdown -->
         <div *ngIf="authService.isLoggedIn()" class="relative">
-          <button (click)="toggleProfileMenu()" class="flex items-center focus:outline-none space-x-2 rtl:space-x-reverse" >
+          <button (click)="toggleProfileMenu()"
+            class="flex items-center focus:outline-none space-x-2 rtl:space-x-reverse">
             <img [src]="authService.getCurrentUser()?.photo || 'assets/images/user-default.png'" alt="User Profile"
               class="w-8 h-8 rounded-full" />
             <span class="text-gray-700 dark:text-gray-300">
@@ -55,22 +55,19 @@
           <!-- Profile Dropdown -->
           <div *ngIf="isProfileMenuOpen"
             class="absolute mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-            <p [routerLink]="['/profile']"
-              class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+            <a [routerLink]="['/profile']" routerLinkActive="router-active-link" class="dropdown-link">
               {{
-              translate.instant('PROFILE.PROFILE') }}</p>
-            <p (click)="logout()"
-              class="block  px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+              translate.instant('PROFILE.PROFILE') }}</a>
+            <a (click)="logout()" class="dropdown-link">
               {{ translate.instant('AUTH.LOGOUT') }}
-            </p>
+            </a>
           </div>
         </div>
       </div>
 
       <!-- Mobile menu button -->
       <div class="md:hidden">
-        <button (click)="toggleMenu()"
-          class="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
+        <button (click)="toggleMenu()" class="header-link">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -82,24 +79,21 @@
   <!-- Mobile menu -->
   <div *ngIf="isMenuOpen" class="md:hidden bg-white dark:bg-gray-800 shadow-md">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a [routerLink]="['/']"
-        class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+      <a [routerLink]="['/']" routerLinkActive="router-active-link" class="block px-3 py-2 header-link">{{
         translate.instant('EVENTS.EVENTS') }}</a>
 
-      <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']"
-        class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+      <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']" routerLinkActive="router-active-link"
+        class="block px-3 py-2 header-link">{{
         translate.instant('PROFILE.MY_BOOKINGS') }}</a>
 
-      <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']"
-        class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+      <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']" routerLinkActive="router-active-link"
+        class="block px-3 py-2 header-link">{{
         translate.instant('ADMIN.DASHBOARD') }}</a>
 
       <div *ngIf="!authService.isLoggedIn()" class="pt-4 pb-2 border-t border-gray-200 dark:border-gray-700">
-        <a [routerLink]="['/login']"
-          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+        <a [routerLink]="['/login']" routerLinkActive="router-active-link" class="block px-3 py-2 header-link">{{
           translate.instant('AUTH.LOGIN') }}</a>
-        <a [routerLink]="['/register']"
-          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">{{
+        <a [routerLink]="['/register']" class="block px-3 py-2 header-link">{{
           translate.instant('AUTH.REGISTER') }}</a>
       </div>
     </div>

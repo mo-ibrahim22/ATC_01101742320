@@ -1,7 +1,6 @@
 <div class="relative">
-  <button (click)="toggleMenu()"
-    class="flex items-center gap-1 rtl:flex-row-reverse text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors">
-    <span >
+  <button (click)="toggleMenu()" class="flex items-center gap-1 rtl:flex-row-reverse header-link">
+    <span>
       {{ languageService.getCurrentLanguage() === 'en' ? 'EN' : 'AR' }}
     </span>
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -11,12 +10,10 @@
 
   <!-- Language Dropdown -->
   <div *ngIf="isMenuOpen" class="absolute mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-    <p (click)="switchLanguage('en')"
-      class="block  px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+    <p (click)="switchLanguage('en')" class="dropdown-link">
       English
     </p>
-    <p (click)="switchLanguage('ar')"
-      class="block  px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+    <p (click)="switchLanguage('ar')" class="dropdown-link">
       العربية
     </p>
   </div>

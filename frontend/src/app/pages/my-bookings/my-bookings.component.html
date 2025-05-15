@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1 class="page-title">
                 {{ translate.instant('PROFILE.MY_BOOKINGS') }}
             </h1>
 
@@ -18,10 +18,10 @@
                 [message]="translate.instant('BOOKING.NO_BOOKINGS_MESSAGE')"></app-empty-state>
 
             <!-- Bookings Table -->
-            <div *ngIf="bookings.length > 0" class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+            <div *ngIf="bookings.length > 0" class="table-div">
+                <div class="table-container">
+                    <table class="table-shape">
+                        <thead class="table-head-bg">
                             <tr>
                                 <th scope="col" class="table-header">
                                     {{ translate.instant('BOOKING.EVENT') }}
@@ -40,9 +40,9 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tbody class="table-body">
                             <tr *ngFor="let booking of bookings">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="table-cell">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
                                             <img class="h-10 w-10 rounded-full object-cover"
@@ -61,7 +61,7 @@
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="table-cell">
                                     <div class="text-sm text-gray-900 dark:text-white">
                                         {{ booking.createdAt | dateFormat: 'PP' | arabicNumbers }}
                                     </div>
@@ -70,11 +70,11 @@
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                                <td class="table-cell text-sm text-gray-900 dark:text-white">
                                     {{ booking.price | currency | arabicNumbers }}
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="table-cell">
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
                                         [class.bg-green-100]="booking.paid" [class.text-green-800]="booking.paid"
                                         [class.bg-yellow-100]="!booking.paid" [class.text-yellow-800]="!booking.paid">
@@ -86,13 +86,11 @@
                                     </span>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right ">
-                                    <a [routerLink]="['/events', booking.event._id]"
-                                        class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors mr-4 rtl:mr-0 rtl:ml-4">
+                                <td class="table-cell text-sm font-medium text-right ">
+                                    <a [routerLink]="['/events', booking.event._id]" class="edit-link">
                                         {{ translate.instant('COMMON.VIEW') }}
                                     </a>
-                                    <button (click)="cancelBooking(booking._id)"
-                                        class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors ">
+                                    <button (click)="cancelBooking(booking._id)" class="delete-link ">
                                         {{ translate.instant('COMMON.CANCEL') }}
                                     </button>
 

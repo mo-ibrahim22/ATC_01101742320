@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 md:p-8">
   <div class="max-w-4xl mx-auto">
     <div class="mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+      <h1 class="page-title">
         {{ translate.instant('PROFILE.PROFILE') }}
       </h1>
       <p class="text-gray-600 dark:text-gray-300">
@@ -79,25 +79,23 @@
 
           <form *ngIf="isEditing; else viewProfile" [formGroup]="profileForm" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label class="form-label">
                 {{ translate.instant('AUTH.NAME') }}
               </label>
               <input formControlName="name" class="form-input"
                 [class.border-red-500]="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
-              <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched"
-                class="text-red-500 text-xs mt-1">
+              <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched" class="form-error">
                 {{ translate.instant('AUTH.NAME') }} {{ translate.instant('COMMON.REQUIRED') }}
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label class="form-label">
                 {{ translate.instant('AUTH.EMAIL') }}
               </label>
               <input formControlName="email" type="email" class="form-input"
                 [class.border-red-500]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
-              <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched"
-                class="text-red-500 text-xs mt-1">
+              <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="form-error">
                 <span *ngIf="profileForm.get('email')?.errors?.['required']">
                   {{ translate.instant('AUTH.EMAIL') }} {{ translate.instant('COMMON.REQUIRED') }}
                 </span>
@@ -108,7 +106,7 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label class="form-label">
                 {{ translate.instant('AUTH.LANGUAGE') }}
               </label>
               <select formControlName="language" class="form-input">
@@ -173,25 +171,25 @@
 
           <form *ngIf="isChangingPassword" [formGroup]="passwordForm" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label class="form-label">
                 {{ translate.instant('PROFILE.CURRENT_PASSWORD') }}
               </label>
               <input formControlName="currentPassword" type="password" class="form-input"
                 [class.border-red-500]="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched">
               <div *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched"
-                class="text-red-500 text-xs mt-1">
+                class="form-error">
                 {{ translate.instant('PROFILE.CURRENT_PASSWORD_REQUIRED') }}
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label class="form-label">
                 {{ translate.instant('PROFILE.NEW_PASSWORD') }}
               </label>
               <input formControlName="newPassword" type="password" class="form-input"
                 [class.border-red-500]="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
               <div *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched"
-                class="text-red-500 text-xs mt-1">
+                class="form-error">
                 <span *ngIf="passwordForm.get('newPassword')?.errors?.['required']">
                   {{ translate.instant('PROFILE.NEW_PASSWORD_REQUIRED') }}
                 </span>
@@ -202,13 +200,13 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label class="form-label">
                 {{ translate.instant('PROFILE.CONFIRM_NEW_PASSWORD') }}
               </label>
               <input formControlName="confirmPassword" type="password" class="form-input"
                 [class.border-red-500]="passwordForm.get('confirmPassword')?.invalid && passwordForm.get('confirmPassword')?.touched">
               <div *ngIf="passwordForm.get('confirmPassword')?.invalid && passwordForm.get('confirmPassword')?.touched"
-                class="text-red-500 text-xs mt-1">
+                class="form-error">
                 <span *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']">
                   {{ translate.instant('PROFILE.CONFIRM_PASSWORD_REQUIRED') }}
                 </span>

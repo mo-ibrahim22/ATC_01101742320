@@ -31,13 +31,65 @@
   .form-label {
     @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
   }
+
+  .form-error{
+    @apply text-red-500 text-xs mt-1;
+  }
   
   .card {
     @apply bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
   }
 
+  .page-title {
+    @apply text-2xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .table-div{
+    @apply bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden;
+  }
+
+  .table-container{
+    @apply overflow-x-auto;
+  }
+  
+  .table-shape{
+    @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700;
+  }
+
+  .table-head-bg{
+    @apply bg-gray-50 dark:bg-gray-700;
+  }
+
   .table-header {
     @apply px-6 py-3 text-left rtl:text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider;
+  }
+
+  .table-body{
+    @apply bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700;
+  }
+
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap;
+  }
+
+
+  .header-link {
+    @apply text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors;
+  }
+
+  .router-active-link {
+    @apply text-primary-500 dark:text-primary-400 font-semibold transition-colors !important;
+  }
+
+  .dropdown-link {
+    @apply block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors cursor-pointer;
+  }
+
+  .edit-link{
+    @apply text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors mr-4 rtl:mr-0 rtl:ml-4 cursor-pointer;
+  }
+  .delete-link{
+    @apply text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors cursor-pointer;
   }
 }
 

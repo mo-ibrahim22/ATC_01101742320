@@ -1,6 +1,6 @@
 <div class="p-6">
   <div class="mb-6">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+    <h2 class="page-title">
       {{ translate.instant('ADMIN.MANAGE_USERS') }}
     </h2>
   </div>
@@ -10,10 +10,10 @@
 
 
   <!-- Users Table -->
-  <div *ngIf="!isLoading" class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
-    <div class="overflow-x-auto">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead class="bg-gray-50 dark:bg-gray-700">
+  <div *ngIf="!isLoading" class="table-div">
+    <div class="table-container">
+      <table class="table-shape">
+        <thead class="table-head-bg">
           <tr>
             <th scope="col" class="table-header">
               {{ translate.instant('PROFILE.PROFILE') }}
@@ -32,9 +32,9 @@
             </th>
           </tr>
         </thead>
-        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+        <tbody class="table-body">
           <tr *ngFor="let user of users">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <div class="flex items-center">
                 <div class="flex-shrink-0 h-10 w-10">
                   <img class="h-10 w-10 rounded-full object-cover"
@@ -47,27 +47,25 @@
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+            <td class="table-cell text-sm text-gray-900 dark:text-white">
               {{ user.email }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+            <td class="table-cell text-sm text-gray-900 dark:text-white">
               {{ user.language === 'en' ? 'English' : 'العربية' }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="table-cell">
               <span [class.bg-green-100]="user.role === 'admin'" [class.text-green-800]="user.role === 'admin'"
                 [class.bg-blue-100]="user.role !== 'admin'" [class.text-blue-800]="user.role !== 'admin'"
                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
                 {{ user.role === 'admin' ? translate.instant('COMMON.ADMIN') : translate.instant('COMMON.USER') }}
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button (click)="toggleAdminStatus(user)"
-                class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors mr-4 rtl:mr-0 rtl:ml-4">
+            <td class="table-cell text-right text-sm font-medium">
+              <button (click)="toggleAdminStatus(user)" class="edit-link">
                 {{ user.role === 'admin' ? translate.instant('ADMIN.REMOVE_ADMIN') :
                 translate.instant('ADMIN.MAKE_ADMIN') }}
               </button>
-              <button (click)="deleteUser(user._id)"
-                class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors">
+              <button (click)="deleteUser(user._id)" class="delete-link">
                 {{ translate.instant('COMMON.DELETE') }}
               </button>
             </td>
