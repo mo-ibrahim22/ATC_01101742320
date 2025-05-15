@@ -1,5 +1,4 @@
-<div
-  class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+<div class="card">
   <div class="relative">
     <img [src]="event.image || 'assets/images/event-default.jpg'" [alt]="event.name" class="w-full h-48 object-cover">
     <div class="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded-md text-sm">
@@ -56,8 +55,7 @@
       </button>
 
       <ng-container *ngIf="authService.isLoggedIn();">
-        <button *ngIf="!event.isBooked" (click)="bookEvent(event._id)"
-          class="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors">
+        <button *ngIf="!event.isBooked" (click)="bookEvent(event._id)" class="btn-primary">
           {{ translate.instant('EVENTS.BOOK_NOW') }}
         </button>
 
@@ -67,8 +65,7 @@
         </button>
       </ng-container>
 
-      <button *ngIf="!authService.isLoggedIn()" [routerLink]="['/login']"
-        class="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors">
+      <button *ngIf="!authService.isLoggedIn()" [routerLink]="['/login']" class="btn-primary">
         {{ translate.instant('EVENTS.LOGIN_TO_BOOK') }}
       </button>
     </div>
