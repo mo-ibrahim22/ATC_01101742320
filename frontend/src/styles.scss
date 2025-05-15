@@ -3,14 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
-// Custom components using @layer
+
+
+/* Custom styles */
 @layer components {
   .btn-primary {
     @apply px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors;
   }
   
   .btn-secondary {
-    @apply px-4 py-2 bg-secondary-500 text-white rounded-md hover:bg-secondary-600 transition-colors;
+    @apply px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors;
   }
   
   .btn-danger {
@@ -30,13 +32,21 @@
   }
 }
 
-// Dark mode classes
-.dark {
+/* Base RTL/LTR styles */
+html {
+  @apply transition-colors duration-300;
+}
+
+/* Dark mode */
+html.dark {
   @apply bg-gray-900 text-gray-100;
 }
 
-// RTL support for Arabic
-[dir="rtl"] {
+/* RTL Specific Styles */
+.rtl {
+  direction: rtl;
+
+  /* Text alignment */
   .text-right {
     text-align: left;
   }
@@ -44,45 +54,134 @@
   .text-left {
     text-align: right;
   }
+
+  /* Margins */
+  .mr-1 { margin-right: 0 !important; margin-left: 0.25rem !important; }
+  .mr-2 { margin-right: 0 !important; margin-left: 0.5rem !important; }
+  .mr-3 { margin-right: 0 !important; margin-left: 0.75rem !important; }
+  .mr-4 { margin-right: 0 !important; margin-left: 1rem !important; }
+  .mr-5 { margin-right: 0 !important; margin-left: 1.25rem !important; }
   
-  .mr-2 {
-    margin-right: 0;
-    margin-left: 0.5rem;
+  .ml-1 { margin-left: 0 !important; margin-right: 0.25rem !important; }
+  .ml-2 { margin-left: 0 !important; margin-right: 0.5rem !important; }
+  .ml-3 { margin-left: 0 !important; margin-right: 0.75rem !important; }
+  .ml-4 { margin-left: 0 !important; margin-right: 1rem !important; }
+  .ml-5 { margin-left: 0 !important; margin-right: 1.25rem !important; }
+
+  /* Paddings */
+  .pr-1 { padding-right: 0 !important; padding-left: 0.25rem !important; }
+  .pr-2 { padding-right: 0 !important; padding-left: 0.5rem !important; }
+  .pr-3 { padding-right: 0 !important; padding-left: 0.75rem !important; }
+  .pr-4 { padding-right: 0 !important; padding-left: 1rem !important; }
+  .pr-5 { padding-right: 0 !important; padding-left: 1.25rem !important; }
+  
+  .pl-1 { padding-left: 0 !important; padding-right: 0.25rem !important; }
+  .pl-2 { padding-left: 0 !important; padding-right: 0.5rem !important; }
+  .pl-3 { padding-left: 0 !important; padding-right: 0.75rem !important; }
+  .pl-4 { padding-left: 0 !important; padding-right: 1rem !important; }
+  .pl-5 { padding-left: 0 !important; padding-right: 1.25rem !important; }
+
+  /* Borders */
+  .border-r { border-right: none !important; border-left: 1px solid !important; }
+  .border-l { border-left: none !important; border-right: 1px solid !important; }
+
+  /* Flexbox ordering */
+  .space-x-1 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 0; margin-right: calc(0.25rem * var(--tw-space-x-reverse)) !important; margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse))) !important; }
+  .space-x-2 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 0; margin-right: calc(0.5rem * var(--tw-space-x-reverse)) !important; margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse))) !important; }
+  .space-x-3 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 0; margin-right: calc(0.75rem * var(--tw-space-x-reverse)) !important; margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse))) !important; }
+  .space-x-4 > :not([hidden]) ~ :not([hidden]) { --tw-space-x-reverse: 0; margin-right: calc(1rem * var(--tw-space-x-reverse)) !important; margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse))) !important; }
+
+  /* Float */
+  .float-right { float: left !important; }
+  .float-left { float: right !important; }
+
+  /* Position */
+  .right-0 { right: auto !important; left: 0 !important; }
+  .left-0 { left: auto !important; right: 0 !important; }
+
+  /* Transform origin */
+  .origin-top-right { transform-origin: top left !important; }
+  .origin-top-left { transform-origin: top right !important; }
+
+  /* Dropdown menus */
+  .dropdown-menu {
+    right: auto !important;
+    left: 0 !important;
   }
+
+  /* Input groups */
+  .input-group-prepend {
+    border-radius: 0 0.375rem 0.375rem 0 !important;
+  }
+  .input-group-append {
+    border-radius: 0.375rem 0 0 0.375rem !important;
+  }
+
+  /* Checkboxes and radios */
+  .form-check-input {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+  }
+
+  /* Pagination */
+  .pagination .page-item:first-child .page-link {
+    border-radius: 0 0.375rem 0.375rem 0 !important;
+  }
+  .pagination .page-item:last-child .page-link {
+    border-radius: 0.375rem 0 0 0.375rem !important;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "\\2039" !important; /* Single left angle quote */
+    padding-right: 0 !important;
+    padding-left: 0.5rem !important;
+  }
+
+  /* Custom RTL classes */
+  .rtl-ml-0 { margin-left: 0 !important; }
+  .rtl-mr-0 { margin-right: 0 !important; }
+  .rtl-pl-0 { padding-left: 0 !important; }
+  .rtl-pr-0 { padding-right: 0 !important; }
 }
 
-// Custom scrollbar
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: theme('colors.gray.100');
-  
-  .dark & {
-    background: theme('colors.gray.800');
-  }
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.gray.400');
-  border-radius: 9999px;
-  
-  .dark & {
-    background: theme('colors.gray.600');
-  }
-  
-  &:hover {
-    background: theme('colors.gray.500');
-    
-    .dark & {
-      background: theme('colors.gray.500');
-    }
-  }
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
 }
 
-// Transition for dark mode toggle
-html {
-  transition: background-color 300ms, color 300ms;
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+}
+
+/* Arabic font support */
+@font-face {
+  font-family: 'Tajawal';
+  font-weight: 400;
+  src: url('./assets/fonts/Tajawal-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-weight: 500;
+  src: url('./assets/fonts/Tajawal-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-weight: 700;
+  src: url('./assets/fonts/Tajawal-Bold.ttf') format('truetype');
+}
+
+.rtl {
+  font-family: 'Tajawal', sans-serif;
 }

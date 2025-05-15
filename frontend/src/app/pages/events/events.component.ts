@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { EventCardComponent } from '../../components/event-card/event-card.component';
 import { LoadingSpinnerComponent } from '../../components/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from '../../components/empty-state/empty-state.component';
-import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
+import { ArabicNumbersPipe } from '../../pipes/arabic-numbers.pipe';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-events',
@@ -18,8 +19,8 @@ import { ArabicNumbersPipe } from "../../pipes/arabic-numbers.pipe";
     EventCardComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
-    ArabicNumbersPipe
-],
+    ArabicNumbersPipe,
+  ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
 })
@@ -36,7 +37,8 @@ export class EventsComponent implements OnInit {
   constructor(
     private eventService: EventService,
     public authService: AuthService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public languageService: LanguageService
   ) {}
 
   ngOnInit(): void {

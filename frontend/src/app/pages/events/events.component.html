@@ -34,10 +34,10 @@
 
     <!-- Pagination -->
     <div *ngIf="!isLoading && events.length > 0" class="mt-8 flex justify-center">
-      <nav class="flex items-center space-x-2">
+      <nav class="flex items-center gap-2">
         <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1"
           class="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
-          &larr;
+          {{ languageService.getCurrentLanguage() === 'en' ? '&larr;' : '&rarr;' }}
         </button>
 
         <button class="px-3 py-1 rounded-md bg-primary-500 text-white hover:bg-primary-600 transition-colors">
@@ -47,7 +47,7 @@
 
         <button (click)="onPageChange(currentPage + 1)" [disabled]="itemsPerPage > totalEvents"
           class="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
-          &rarr;
+          {{ languageService.getCurrentLanguage() === 'en' ? '&rarr;' : '&larr;' }}
         </button>
       </nav>
     </div>
