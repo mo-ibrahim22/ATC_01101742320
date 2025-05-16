@@ -3,7 +3,7 @@
     <h2 class="page-title">
       {{ translate.instant('ADMIN.MANAGE_EVENTS') }}
     </h2>
-    <a [routerLink]="['/admin/events/new']" class="btn-primary flex items-center rtl:flex-row-reverse">
+    <a [routerLink]="['/admin/events/new']" class="btn-primary flex items-center ">
       <svg class="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
       </svg>
@@ -32,7 +32,7 @@
             <th scope="col" class="table-header">
               {{ translate.instant('EVENTS.PRICE') }}
             </th>
-            <th scope="col" class="table-header">
+            <th scope="col" class="table-header text-right">
               {{ translate.instant('COMMON.ACTIONS') }}
             </th>
           </tr>
@@ -72,10 +72,10 @@
             <td class="table-cell text-sm text-gray-900 dark:text-white">
               {{ event.price | currency | arabicNumbers }}
             </td>
-            <td class="table-cell text-right rtl:text-left text-sm font-medium">
-              <a [routerLink]="['/admin/events', event._id, 'edit']" class="edit-link">
+            <td class="table-cell text-right text-sm font-medium">
+              <button [routerLink]="['/admin/events', event._id, 'edit']" class="edit-link">
                 {{ translate.instant('COMMON.EDIT') }}
-              </a>
+              </button>
               <button (click)="deleteEvent(event._id)" class="delete-link">
                 {{ translate.instant('COMMON.DELETE') }}
               </button>

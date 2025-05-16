@@ -76,9 +76,10 @@
 
   <!-- Main Content -->
   <div [ngClass]="{
-      'md:ms-64': sidebarOpen,
-      'md:ms-20': !sidebarOpen
-    }" class="flex-1 transition-all duration-300 ease-in-out">
+    'ms-64': sidebarOpen,
+    'ms-20': !sidebarOpen
+  }" class="flex-1 overflow-x-auto overflow-y-auto transition-all duration-300 ease-in-out">
     <router-outlet></router-outlet>
   </div>
+
 </div>

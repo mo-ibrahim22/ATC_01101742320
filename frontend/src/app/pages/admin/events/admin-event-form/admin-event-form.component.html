@@ -8,7 +8,7 @@
   <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="space-y-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Event Name -->
-      <div class="col-span-2">
+      <div class="col-span-1 md:col-span-2">
         <label class="form-label">
           {{ translate.instant('EVENTS.EVENT_NAME') }}
         </label>
@@ -20,7 +20,7 @@
       </div>
 
       <!-- Description -->
-      <div class="col-span-2">
+      <div class="col-span-1 md:col-span-2">
         <label class="form-label">
           {{ translate.instant('EVENTS.DESCRIPTION') }}
         </label>
@@ -144,7 +144,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
+    <div class="flex justify-end space-x-4 rtl:space-x-reverse pt-6 border-t border-gray-200 dark:border-gray-700">
       <a [routerLink]="['/admin/events']"
         class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
         {{ translate.instant('COMMON.CANCEL') }}
