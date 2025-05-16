@@ -66,7 +66,7 @@
             <button *ngIf="!isEditing" (click)="isEditing = true" class="btn-primary">
               {{ translate.instant('COMMON.EDIT') }}
             </button>
-            <div *ngIf="isEditing" class="flex space-x-2">
+            <div *ngIf="isEditing" class="flex justify-end space-x-4 rtl:space-x-reverse">
               <button (click)="isEditing = false; loadUserProfile()"
                 class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                 {{ translate.instant('COMMON.CANCEL') }}
@@ -220,8 +220,8 @@
           <div *ngIf="!isChangingPassword" class="text-sm text-gray-500 dark:text-gray-400">
             {{ translate.instant('PROFILE.PASSWORD_LAST_CHANGED') }}:
             <span class="text-gray-900 dark:text-white">
-              {{ authService.getCurrentUser()?.passwordChangedAt ? (authService.getCurrentUser()?.passwordChangedAt |
-              date: 'mediumDate') : translate.instant('PROFILE.NEVER') }}
+              {{ authService.getCurrentUser()?.passwordChangedAt ? (authService.getCurrentUser()?.passwordChangedAt
+              | dateFormat: 'PP') : translate.instant('PROFILE.NEVER') }}
             </span>
           </div>
         </div>

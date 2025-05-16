@@ -43,7 +43,7 @@ export class AdminEventsComponent implements OnInit {
 
   loadEvents(): void {
     this.isLoading = true;
-    this.eventService.getEvents(1, 100).subscribe({
+    this.eventService.getEvents().subscribe({
       next: (response) => {
         this.events = response.events;
         this.isLoading = false;

@@ -12,11 +12,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AlertService } from '../../services/alert.service';
+import { DateFormatPipe } from "../../pipes/date-format.pipe";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, DateFormatPipe],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })

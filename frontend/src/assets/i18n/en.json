@@ -48,7 +48,9 @@
     "LOGIN_REQUIRED": "Please login to access this page",
     "AGREE_TERMS": "I agree to the terms and conditions",
     "LANGUAGE": "Language",
-    "FORGOT_PASSWORD": "Forgot Password?"
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "PASSWORD_MIN_LENGTH": "Password must be at least 8 characters",
+    "PASSWORDS_DONT_MATCH": "Passwords do not match"
   },
   "EVENTS": {
     "EVENTS": "Events",

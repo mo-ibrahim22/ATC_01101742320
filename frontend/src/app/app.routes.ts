@@ -5,6 +5,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { guestGuard } from './guards/guest.guard';
 
 export const routes: Routes = [
   { 
@@ -30,11 +31,13 @@ export const routes: Routes = [
   { 
     path: 'login', 
     loadComponent: () => import('./pages/auth/login/login.component').then(m => m.LoginComponent),
+    canActivate: [guestGuard],
     title: 'Login'
   },
   { 
     path: 'register', 
     loadComponent: () => import('./pages/auth/register/register.component').then(m => m.RegisterComponent),
+    canActivate: [guestGuard],
     title: 'Register'
   },
   { 

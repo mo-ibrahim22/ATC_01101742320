@@ -3,11 +3,10 @@ import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
-export class adminGuard implements CanActivate {
+export class guestGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate():
@@ -15,7 +14,7 @@ export class adminGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isAdmin()) {
+    if (!this.authService.isLoggedIn()) {
       return true;
     }
 

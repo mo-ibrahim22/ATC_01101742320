@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../models/user.model';
-import { UserService } from './user.service';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -79,10 +78,6 @@ export class AuthService {
     }
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
-    this.toastr.success(
-      this.translate.instant('AUTH.LOGOUT_SUCCESS'),
-      this.translate.instant('COMMON.SUCCESS')
-    );
   }
 
   /**

@@ -16,8 +16,8 @@ export class EventService {
    * Get paginated & filtered list of events.
    */
   getEvents(
-    page : number,
-    limit : number,
+    page ?: number,
+    limit ?: number,
     filters?: any
   ): Observable<{ events: Event[]; total: number }> {
     let params: any = { page, limit };
