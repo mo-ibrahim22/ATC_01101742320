@@ -91,6 +91,34 @@
   .delete-link{
     @apply text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600 transition-colors cursor-pointer;
   }
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in.animate-delay-100 {
+  animation-delay: 0.3s;
+}
+
+.animate-fade-in.animate-delay-200 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(-20px) translateX(-50%); }
+  60% { transform: translateY(-10px) translateX(-50%); }
+}
 }
 
 /* Base RTL/LTR styles */

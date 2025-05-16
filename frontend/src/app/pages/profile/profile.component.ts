@@ -165,7 +165,6 @@ export class ProfileComponent implements OnInit {
           this.userService.deleteMe().subscribe({
             next: () => {
               this.authService.logout();
-              this.router.navigate(['/']);
               this.toastr.success(
                 this.translate.instant('PROFILE.ACCOUNT_DELETED'),
                 this.translate.instant('COMMON.SUCCESS')

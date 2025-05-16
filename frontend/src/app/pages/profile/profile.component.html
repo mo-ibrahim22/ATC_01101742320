@@ -157,7 +157,7 @@
             <button *ngIf="!isChangingPassword" (click)="isChangingPassword = true" class="btn-primary">
               {{ translate.instant('PROFILE.CHANGE_PASSWORD') }}
             </button>
-            <div *ngIf="isChangingPassword" class="flex space-x-2">
+            <div *ngIf="isChangingPassword" class="flex justify-end space-x-4 rtl:space-x-reverse">
               <button (click)="isChangingPassword = false; passwordForm.reset()"
                 class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                 {{ translate.instant('COMMON.CANCEL') }}

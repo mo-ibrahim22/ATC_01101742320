@@ -12,8 +12,12 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
+
         <a [routerLink]="['/']" routerLinkActive="router-active-link" [routerLinkActiveOptions]="{ exact: true }"
           class="header-link">{{
+          translate.instant('HOME.HOME') }}</a>
+
+        <a [routerLink]="['/events']" routerLinkActive="router-active-link" class="header-link">{{
           translate.instant('EVENTS.EVENTS') }}</a>
 
         <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']" routerLinkActive="router-active-link"
@@ -23,6 +27,8 @@
         <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']" routerLinkActive="router-active-link"
           class="header-link">{{
           translate.instant('ADMIN.DASHBOARD') }}</a>
+        <a [routerLink]="['/about']" routerLinkActive="router-active-link" class="header-link">{{
+          translate.instant('ABOUT.ABOUT') }}</a>
       </nav>
 
       <!-- Right side controls -->
@@ -81,6 +87,9 @@
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
       <a [routerLink]="['/']" routerLinkActive="router-active-link" [routerLinkActiveOptions]="{ exact: true }"
         class="block px-3 py-2 header-link">{{
+        translate.instant('HOME.HOME') }}</a>
+
+      <a [routerLink]="['/events']" routerLinkActive="router-active-link" class="block px-3 py-2 header-link">{{
         translate.instant('EVENTS.EVENTS') }}</a>
 
       <a *ngIf="authService.isLoggedIn()" [routerLink]="['/my-bookings']" routerLinkActive="router-active-link"
@@ -90,6 +99,8 @@
       <a *ngIf="authService.isAdmin()" [routerLink]="['/admin']" routerLinkActive="router-active-link"
         class="block px-3 py-2 header-link">{{
         translate.instant('ADMIN.DASHBOARD') }}</a>
+      <a [routerLink]="['/about']" routerLinkActive="router-active-link" class="block px-3 py-2 header-link">{{
+        translate.instant('ABOUT.ABOUT') }}</a>
 
       <div *ngIf="!authService.isLoggedIn()" class="pt-4 pb-2 border-t border-gray-200 dark:border-gray-700">
         <a [routerLink]="['/login']" routerLinkActive="router-active-link" class="block px-3 py-2 header-link">{{

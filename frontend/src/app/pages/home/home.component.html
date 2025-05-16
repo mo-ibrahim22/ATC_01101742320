@@ -1,0 +1,104 @@
+<app-hero-section [title]="translate.instant('HOME.HERO_TITLE')" [subtitle]="translate.instant('HOME.HERO_SUBTITLE')"
+    imageUrl="assets/images/concert-hero.jpg" [ctaText]="translate.instant('HOME.EXPLORE_EVENTS')"></app-hero-section>
+
+<!-- Features Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                {{ translate.instant('HOME.WHY_CHOOSE_US') }}
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                {{ translate.instant('HOME.WHY_CHOOSE_US_DESC') }}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <app-feature-card icon="🎟️" [title]="translate.instant('HOME.FEATURE_1_TITLE')"
+                [description]="translate.instant('HOME.FEATURE_1_DESC')" [animationDelay]="100"></app-feature-card>
+
+            <app-feature-card icon="📅" [title]="translate.instant('HOME.FEATURE_2_TITLE')"
+                [description]="translate.instant('HOME.FEATURE_2_DESC')" [animationDelay]="300"></app-feature-card>
+
+            <app-feature-card icon="🔒" [title]="translate.instant('HOME.FEATURE_3_TITLE')"
+                [description]="translate.instant('HOME.FEATURE_3_DESC')" [animationDelay]="500"></app-feature-card>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Events -->
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                {{ translate.instant('HOME.FEATURED_EVENTS') }}
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                {{ translate.instant('HOME.FEATURED_EVENTS_DESC') }}
+            </p>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="flex justify-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+        </div>
+
+        <!-- Events Grid -->
+        <div *ngIf="!isLoading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div *ngFor="let event of featuredEvents" class="animate-fade-in">
+                <app-event-card [event]="event"></app-event-card>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <button [routerLink]="['/events']"
+                class="px-8 py-3 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-600 transition-all duration-300 transform hover:scale-105">
+                {{ translate.instant('HOME.VIEW_ALL_EVENTS') }}
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-16 bg-gray-100 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                {{ translate.instant('HOME.OUR_IMPACT') }}
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                {{ translate.instant('HOME.OUR_IMPACT_DESC') }}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Customers Card -->
+            <div
+                class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-8 text-center transform transition hover:-translate-y-2 hover:shadow-2xl animate-fade-in">
+                <div class="text-4xl font-bold text-primary-500 mb-2">{{endVal | arabicNumbers}}</div>
+                <div class="text-xl text-gray-700 dark:text-gray-200">
+                    {{ translate.instant('HOME.HAPPY_CUSTOMERS') }}
+                </div>
+            </div>
+
+            <!-- Events Hosted Card -->
+            <div
+                class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-8 text-center transform transition hover:-translate-y-2 hover:shadow-2xl animate-fade-in animate-delay-100">
+                <div class="text-4xl font-bold text-primary-500 mb-2">{{endVal/2 | arabicNumbers }}</div>
+                <div class="text-xl text-gray-700 dark:text-gray-200">
+                    {{ translate.instant('HOME.EVENTS_HOSTED') }}
+                </div>
+            </div>
+
+            <!-- Venues Card -->
+            <div
+                class="bg-white dark:bg-gray-700 rounded-2xl shadow-lg p-8 text-center transform transition hover:-translate-y-2 hover:shadow-2xl animate-fade-in animate-delay-200">
+                <div class="text-4xl font-bold text-primary-500 mb-2">{{endVal/20 | arabicNumbers}}</div>
+                <div class="text-xl text-gray-700 dark:text-gray-200">
+                    {{ translate.instant('HOME.VENUES_PARTNERED') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

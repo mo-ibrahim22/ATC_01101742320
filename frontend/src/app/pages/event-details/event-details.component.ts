@@ -39,7 +39,7 @@ export class EventDetailsComponent implements OnInit {
     if (eventId) {
       this.loadEvent(eventId);
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/events']);
     }
   }
 
@@ -54,7 +54,7 @@ export class EventDetailsComponent implements OnInit {
       },
       error: () => {
         this.isLoading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/events']);
       },
     });
   }
@@ -118,7 +118,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   goBackToEvents(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/events']);
   }
   goToLogin(): void {
     this.router.navigate(['/login'], {

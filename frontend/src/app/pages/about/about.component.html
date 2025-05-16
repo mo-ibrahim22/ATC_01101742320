@@ -1,0 +1,115 @@
+<app-hero-section [title]="translate.instant('ABOUT.HERO_TITLE')" [subtitle]="translate.instant('ABOUT.HERO_SUBTITLE')"
+  [ctaText]="translate.instant('HOME.EXPLORE_EVENTS')" imageUrl="assets/images/about-hero.jpg"></app-hero-section>
+
+<!-- Our Story -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="md:w-1/2 animate-fade-in">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+          {{ translate.instant('ABOUT.OUR_STORY') }}
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">
+          {{ translate.instant('ABOUT.OUR_STORY_DESC_1') }}
+        </p>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">
+          {{ translate.instant('ABOUT.OUR_STORY_DESC_2') }}
+        </p>
+        <p class="text-gray-600 dark:text-gray-300">
+          {{ translate.instant('ABOUT.OUR_STORY_DESC_3') }}
+        </p>
+      </div>
+      <div class="md:w-1/2 animate-fade-in animate-delay-100">
+        <div class="relative rounded-xl overflow-hidden shadow-lg">
+          <img src="assets/images/about-story.jpg" alt="Our Story" class="w-full h-auto">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+            <h3 class="text-white text-xl font-semibold">
+              {{ translate.instant('ABOUT.OUR_JOURNEY') }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Mission -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        {{ translate.instant('ABOUT.OUR_MISSION') }}
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        {{ translate.instant('ABOUT.OUR_MISSION_DESC') }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <app-feature-card icon="🎯" [title]="translate.instant('ABOUT.MISSION_1_TITLE')"
+        [description]="translate.instant('ABOUT.MISSION_1_DESC')" [animationDelay]="100"></app-feature-card>
+
+      <app-feature-card icon="💡" [title]="translate.instant('ABOUT.MISSION_2_TITLE')"
+        [description]="translate.instant('ABOUT.MISSION_2_DESC')" [animationDelay]="300"></app-feature-card>
+
+      <app-feature-card icon="🤝" [title]="translate.instant('ABOUT.MISSION_3_TITLE')"
+        [description]="translate.instant('ABOUT.MISSION_3_DESC')" [animationDelay]="500"></app-feature-card>
+    </div>
+  </div>
+</section>
+
+<!-- Our Team -->
+<section class="py-16 bg-white dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        {{ translate.instant('ABOUT.OUR_TEAM') }}
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        {{ translate.instant('ABOUT.OUR_TEAM_DESC') }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="md:col-start-2 animate-fade-in">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+          <div class="relative h-64">
+            <img src="assets/images/developer.jpg" [alt]="translate.instant('ABOUT.DEVELOPER_NAME')"
+              class="w-full h-full object-fill">
+          </div>
+
+          <div class="p-6 flex-grow">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">
+              {{ translate.instant('ABOUT.DEVELOPER_NAME') }}
+            </h3>
+            <p class="text-primary-500 font-medium mb-3">
+              {{ translate.instant('ABOUT.DEVELOPER_TITLE') }}
+            </p>
+            <p class="text-gray-600 dark:text-gray-300">
+              {{ translate.instant('ABOUT.DEVELOPER_DESC') }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-6 animate-fade-in">
+      {{ translate.instant('ABOUT.READY_TO_JOIN') }}
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto animate-fade-in animate-delay-100">
+      {{ translate.instant('ABOUT.READY_TO_JOIN_DESC') }}
+    </p>
+    <a [routerLink]="['/events']"
+      class="btn-primary inline-block px-8 py-3 font-semibold rounded-lg  transition-all duration-300 transform hover:scale-105 animate-fade-in animate-delay-200">
+      {{ translate.instant('ABOUT.BROWSE_EVENTS') }}
+    </a>
+  </div>
+</section>

@@ -29,7 +29,7 @@ export class BookingConfirmationComponent implements OnInit {
     if (bookingId) {
       this.loadBooking(bookingId);
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/events']);
     }
   }
 
@@ -41,12 +41,12 @@ export class BookingConfirmationComponent implements OnInit {
         this.isLoading = false;
 
         if (!this.booking) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/events']);
         }
       },
       error: () => {
         this.isLoading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/events']);
       },
     });
   }
@@ -56,6 +56,6 @@ export class BookingConfirmationComponent implements OnInit {
   }
 
   goToEvents(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/events']);
   }
 }
