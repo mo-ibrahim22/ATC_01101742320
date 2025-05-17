@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import AppError from '../utils/appError.js';
 import catchAsync from '../utils/catchAsync.js';
+import Booking from '../models/Booking.js';
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -49,13 +50,17 @@ export const updateMe = catchAsync(async (req, res, next) => {
 });
 
 export const deleteMe = catchAsync(async (req, res, next) => {
-  await User.findByIdAndDelete(req.user.id);
+  const user = await User.findByIdAndDelete(req.user.id);
+
+  // Delete related bookings
+  await Booking.deleteMany({ user: req.user.id });
 
   res.status(204).json({
     status: 'success',
     data: null
   });
 });
+
 
 export const getUser = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
@@ -91,7 +96,14 @@ export const updateUser = catchAsync(async (req, res, next) => {
 });
 
 export const deleteUser = catchAsync(async (req, res, next) => {
-  await User.findByIdAndDelete(req.params.id);
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  if (!user) {
+    return next(new AppError('No user found with that ID', 404));
+  }
+
+  // Delete related bookings
+  await Booking.deleteMany({ user: user._id });
 
   res.status(204).json({
     status: 'success',
