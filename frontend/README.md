@@ -33,18 +33,6 @@ frontend/                 # Angular application
 - Node.js and npm
 - Angular CLI
 
-### Setup & Run
-
-```bash
-cd frontend
-npm install
-ng serve -o
-```
-
-Open your browser at `http://localhost:4200` to access the app.
-
----
-
 ## ⚙️ Environment Configuration
 
 Adjust `src/environments/environment.ts` for development and `environment.prod.ts` for production with your API URLs.
@@ -55,6 +43,18 @@ export const environment = {
   apiUrl: "http://localhost:5000/api/v1",
 };
 ```
+
+---
+### Setup & Run
+
+```bash
+cd frontend
+npm install
+ng serve -o
+```
+
+Open your browser at `http://localhost:4200` to access the app.
+
 
 ---
 
