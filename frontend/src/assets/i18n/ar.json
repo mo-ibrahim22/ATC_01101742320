@@ -51,7 +51,8 @@
     "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
     "PASSWORD_MIN_LENGTH": "يجب أن تكون كلمة المرور على الأقل ٨ أحرف",
     "PASSWORDS_DONT_MATCH": "كلمات المرور غير متطابقة",
-    "EMAIL_INVALID": "البريد الإلكتروني غير صالح"
+    "EMAIL_INVALID": "البريد الإلكتروني غير صالح",
+    "AGREE_TERMS_REQUIRED": "يجب الموافقة على الشروط والأحكام"
   },
   "EVENTS": {
     "EVENTS": "الأحداث",
