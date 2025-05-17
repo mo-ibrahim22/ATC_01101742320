@@ -54,7 +54,7 @@
             <img [src]="authService.getCurrentUser()?.photo || 'assets/images/user-default.png'" alt="User Profile"
               class="w-8 h-8 rounded-full" />
             <span class="text-gray-700 dark:text-gray-300">
-              {{ authService.getCurrentUser()?.name }}
+              {{ (authService.getCurrentUser()?.name || '') | truncate : 4 }}
             </span>
           </button>
 

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
+import { TruncatePipe } from "../../pipes/truncate.pipe";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.compone
     RouterModule,
     LanguageSwitcherComponent,
     ThemeSwitcherComponent,
-  ],
+    TruncatePipe
+],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

@@ -148,6 +148,7 @@ export class ProfileComponent implements OnInit {
             this.translate.instant('PROFILE.PASSWORD_UPDATED'),
             this.translate.instant('COMMON.SUCCESS')
           );
+          this.authService.logout();
         },
         error: () => {
           this.toastr.error(

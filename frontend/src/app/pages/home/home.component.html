@@ -44,7 +44,7 @@
         </div>
 
         <!-- Events Grid -->
-        <div *ngIf="!isLoading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div *ngIf="!isLoading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div *ngFor="let event of featuredEvents" class="animate-fade-in">
                 <app-event-card [event]="event"></app-event-card>
 

@@ -160,11 +160,15 @@ export const deleteEvent = catchAsync(async (req, res, next) => {
     return next(new AppError('No event found with that ID', 404));
   }
 
+  // Delete all bookings related to this event
+  await Booking.deleteMany({ event: event._id });
+
   res.status(204).json({
     status: 'success',
     data: null
   });
 });
+
 
 export const getEventStats = catchAsync(async (req, res, next) => {
   const stats = await Event.aggregate([
