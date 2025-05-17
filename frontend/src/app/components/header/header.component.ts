@@ -42,6 +42,8 @@ export class HeaderComponent {
   }
 
   logout(): void {
+    this.isMenuOpen = false;
+    this.isProfileMenuOpen = false;
     this.authService.logout();
   }
 }
