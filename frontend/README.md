@@ -38,7 +38,7 @@ frontend/                 # Angular application
 ```bash
 cd frontend
 npm install
-ng serve
+ng serve -o
 ```
 
 Open your browser at `http://localhost:4200` to access the app.
@@ -48,6 +48,13 @@ Open your browser at `http://localhost:4200` to access the app.
 ## ⚙️ Environment Configuration
 
 Adjust `src/environments/environment.ts` for development and `environment.prod.ts` for production with your API URLs.
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: "http://localhost:5000/api/v1",
+};
+```
 
 ---
 

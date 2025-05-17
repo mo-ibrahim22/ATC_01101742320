@@ -33,9 +33,11 @@ backend/
   ```env
   NODE_ENV=development
   PORT=5000
+  CLIENT_URL=http://localhost:4200
   MONGODB_URI=your_mongodb_connection_string
   JWT_SECRET=your_jwt_secret_here
   JWT_EXPIRES_IN=90d
+  JWT_COOKIE_EXPIRES_IN=90
   CLOUDINARY_CLOUD_NAME=your_cloud_name
   CLOUDINARY_API_KEY=your_api_key
   CLOUDINARY_API_SECRET=your_api_secret
@@ -48,6 +50,8 @@ backend/
 cd backend
 npm install
 npm start
+npm run dev
+
 ```
 
 Server will run on `http://localhost:5000`.
