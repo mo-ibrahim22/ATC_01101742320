@@ -184,5 +184,6 @@ Contributions and suggestions are highly appreciated.
 
 Made with ❤️ by Muhammad Ibrahim.
 
-![Image](https://github.com/user-attachments/assets/d74c4959-6999-4b9f-8bb2-897ebc815fa4)
+![Image](https://github.com/user-attachments/assets/8beb0562-907e-4638-9181-3c6e7a71f661)
+
 ---
