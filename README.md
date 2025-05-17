@@ -118,7 +118,7 @@ A full-stack event booking platform with user authentication, event management, 
    ```
 4. Start the Angular application
    ```bash
-   ng serve
+   ng serve -o
    ```
 
 ---
@@ -170,6 +170,8 @@ ng test
 
 ## 📱 Demo
 
+https://github.com/user-attachments/assets/0a0bbf98-4726-4c09-81aa-595ac5f85586
+
 ---
 
 ## 🙌 Acknowledgements
@@ -182,4 +184,5 @@ Contributions and suggestions are highly appreciated.
 
 Made with ❤️ by Muhammad Ibrahim.
 
+![Image](https://github.com/user-attachments/assets/d74c4959-6999-4b9f-8bb2-897ebc815fa4)
 ---
