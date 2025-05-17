@@ -5,11 +5,12 @@ import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
@@ -22,7 +23,8 @@ export class RegisterComponent {
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private languageService: LanguageService
   ) {
     this.registerForm = this.fb.group(
       {
@@ -57,6 +59,8 @@ export class RegisterComponent {
       .subscribe({
         next: () => {
           this.isLoading = false;
+          this.translate.use(language);
+          this.languageService.switchLanguage(language);
           this.router.navigate(['/']);
         },
         error: () => {

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AlertService } from '../../services/alert.service';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +38,8 @@ export class ProfileComponent implements OnInit {
     private toastr: ToastrService,
     public translate: TranslateService,
     private alertService: AlertService,
+    private languageService: LanguageService,
+
     private router: Router
   ) {}
 
@@ -118,6 +121,7 @@ export class ProfileComponent implements OnInit {
           this.translate.instant('COMMON.SUCCESS')
         );
         this.translate.use(user.language);
+        this.languageService.switchLanguage(user.language);
       },
       error: () => {
         this.toastr.error(
