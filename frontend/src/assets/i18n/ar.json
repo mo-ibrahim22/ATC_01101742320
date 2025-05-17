@@ -50,7 +50,8 @@
     "LANGUAGE": "اللغة",
     "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
     "PASSWORD_MIN_LENGTH": "يجب أن تكون كلمة المرور على الأقل ٨ أحرف",
-    "PASSWORDS_DONT_MATCH": "كلمات المرور غير متطابقة"
+    "PASSWORDS_DONT_MATCH": "كلمات المرور غير متطابقة",
+    "EMAIL_INVALID": "البريد الإلكتروني غير صالح"
   },
   "EVENTS": {
     "EVENTS": "الأحداث",

@@ -50,7 +50,8 @@
     "LANGUAGE": "Language",
     "FORGOT_PASSWORD": "Forgot Password?",
     "PASSWORD_MIN_LENGTH": "Password must be at least 8 characters",
-    "PASSWORDS_DONT_MATCH": "Passwords do not match"
+    "PASSWORDS_DONT_MATCH": "Passwords do not match",
+    "EMAIL_INVALID": "Invalid email address"
   },
   "EVENTS": {
     "EVENTS": "Events",
