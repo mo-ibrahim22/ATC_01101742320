@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AlertService } from '../../services/alert.service';
-import { DateFormatPipe } from "../../pipes/date-format.pipe";
+import { DateFormatPipe } from '../../pipes/date-format.pipe';
 
 @Component({
   selector: 'app-profile',
@@ -24,6 +24,7 @@ import { DateFormatPipe } from "../../pipes/date-format.pipe";
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   passwordForm!: FormGroup;
+  isLoading = false;
 
   isEditing = false;
   isChangingPassword = false;
@@ -106,11 +107,12 @@ export class ProfileComponent implements OnInit {
         formData.append(key, value);
       }
     });
-
+    this.isLoading = true;
     this.userService.updateMe(formData).subscribe({
       next: (user) => {
         this.authService.updateUser(user);
         this.isEditing = false;
+        this.isLoading = false;
         this.toastr.success(
           this.translate.instant('PROFILE.UPDATE_SUCCESS'),
           this.translate.instant('COMMON.SUCCESS')
